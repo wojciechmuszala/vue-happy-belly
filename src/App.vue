@@ -1,17 +1,15 @@
 <template>
-  <div class="font-quicksand min-h-screen bg-light-yellow">
+  <div
+    class="flex min-h-screen flex-col overflow-hidden bg-light-yellow font-quicksand text-dark-blue"
+  >
     <the-navigation></the-navigation>
-    <main-content @click="fct"></main-content>
+    <main-content></main-content>
   </div>
 </template>
 
 <script setup>
 import TheNavigation from "./components/layout/TheNavigation";
 import MainContent from "./components/layout/MainContent";
-
-const fct = (ff) => {
-  ff.toString();
-};
 </script>
 
 <style></style>

@@ -1,6 +1,10 @@
 <template>
-  <main>
-    <h1 class="font-5xl bg-dark-blue">Happy Belly</h1>
+  <main class="flex flex-1 flex-auto items-center justify-center">
+    <router-view v-slot="{ Component }">
+      <transition>
+        <component :is="Component"></component>
+      </transition>
+    </router-view>
   </main>
 </template>
 
