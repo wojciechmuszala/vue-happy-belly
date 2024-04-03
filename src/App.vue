@@ -4,7 +4,7 @@
   >
     <the-navigation @get-navbar-state="handleNavbarState"></the-navigation>
     <main-content
-      class="ml-52 transition-all duration-300 ease-in-out"
+      class="transition-all duration-300 ease-in-out"
       :class="isNavbarExpanded ? 'md:ml-52' : 'md:ml-32'"
     ></main-content>
   </div>

@@ -1,43 +1,32 @@
 <template>
   <header
-    class="md:stati fixed left-0 top-0 w-full bg-dark-blue transition-all duration-300 ease-in-out md:h-svh"
+    class="fixed left-0 top-0 w-full bg-dark-blue transition-all duration-300 ease-in-out md:h-svh"
     :class="isNavbarExpanded ? 'md:w-52' : 'md:w-32'"
   >
     <menu
-      class="bg-inherit flex w-full items-center justify-between p-5 text-light-yellow md:flex-col md:p-2"
+      class="bg-inherit flex w-full items-center justify-between p-5 text-light-yellow md:h-full md:flex-col md:px-2 md:py-8"
     >
-      <app-logo class="mb-5 hidden w-12 md:block"></app-logo>
+      <router-link to="/" class="mb-5 hidden w-12 md:block">
+        <app-logo />
+      </router-link>
       <base-button class="btn-primary">Sign in</base-button>
-      <div
-        @click="toggleMenu"
-        class="relative flex w-8 flex-col items-end gap-y-1.5 md:hidden"
-        :class="{ open: isMenuVisible }"
-      >
-        <span
-          v-for="n in 3"
-          :key="n"
-          class="h-1 bg-light-yellow transition-all duration-300"
-          :class="{
-            'w-3/4': n === 1,
-            'w-full': n === 2 || n === 3,
-            'translate-x-full opacity-0': n === 1 && isMenuVisible,
-            'translate-y-[3.5px] rotate-45': n === 2 && isMenuVisible,
-            'translate-y-[-7px] -rotate-45': n === 3 && isMenuVisible,
-          }"
-        ></span>
-      </div>
+      <burger-menu @click="toggleMenu" :is-menu-visible="isMenuVisible" />
       <nav
-        class="bg-inherit absolute bottom-0 left-0 z-[-10] flex w-full flex-col justify-center p-5 shadow-lg transition-all duration-500 ease-in-out"
+        class="bg-inherit absolute bottom-0 left-0 z-[-10] flex w-full flex-col justify-center p-5 shadow-lg transition-all duration-500 ease-in-out md:static md:z-auto md:shadow-none"
         :class="{ 'translate-y-full': isMenuVisible }"
       >
         <router-link
           v-for="menuItem in menuList"
           :key="menuItem"
           :to="menuItem.link"
-          >{{ menuItem.title }}</router-link
         >
+          <span>{{ menuItem.icon }}</span>
+          <transition name="fade" mode="out-in">
+            <span v-show="isNavbarExpanded">{{ menuItem.title }}</span>
+          </transition>
+        </router-link>
       </nav>
-      <div class="color-red" @click="toggleNavbar">
+      <div class="hidden md:mt-auto md:block" @click="toggleNavbar">
         {{ isNavbarExpanded ? "<<<" : ">>>" }}
       </div>
     </menu>
@@ -48,27 +37,32 @@
 import { ref, defineEmits } from "vue";
 import BaseButton from "../base/BaseButton";
 import AppLogo from "@/components/svg/AppLogo";
+import BurgerMenu from "../layout/navigation/BurgerMenu";
 
 const menuList = [
   {
-    title: "Link 1",
-    link: "#",
+    title: "Recipes list",
+    link: "/recipes",
+    icon: "☺",
   },
   {
     title: "Link 2",
     link: "#",
+    icon: "☺",
   },
   {
     title: "Eueue",
     link: "#",
+    icon: "☺",
   },
   {
     title: "Link 4",
     link: "#",
+    icon: "☺",
   },
 ];
 
-const isNavbarExpanded = ref(false);
+const isNavbarExpanded = ref(true);
 const toggleNavbar = () => {
   isNavbarExpanded.value = !isNavbarExpanded.value;
   sendNavbarExpandInfo();
@@ -84,4 +78,14 @@ const sendNavbarExpandInfo = () =>
   emit("getNavbarState", isNavbarExpanded.value);
 </script>
 
-<style scoped></style>
+<style scoped>
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+</style>

@@ -1,7 +1,7 @@
 <template>
-  <main class="flex flex-1 flex-auto items-center justify-center">
+  <main class="flex flex-1 items-center justify-center">
     <router-view v-slot="{ Component }">
-      <transition>
+      <transition name="fade" mode="out-in">
         <component :is="Component"></component>
       </transition>
     </router-view>
@@ -10,4 +10,14 @@
 
 <script setup></script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+</style>
