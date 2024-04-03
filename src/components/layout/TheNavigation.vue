@@ -1,7 +1,7 @@
 <template>
   <header
     class="md:stati fixed left-0 top-0 w-full bg-dark-blue transition-all duration-300 ease-in-out md:h-svh"
-    :class="isNavbarExpanded ? navbarStyles.expanded : navbarStyles.notExpanded"
+    :class="isNavbarExpanded ? 'md:w-52' : 'md:w-32'"
   >
     <menu
       class="bg-inherit flex w-full items-center justify-between p-5 text-light-yellow md:flex-col md:p-2"
@@ -45,7 +45,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits } from "vue";
+import { ref, defineEmits } from "vue";
 import BaseButton from "../base/BaseButton";
 import AppLogo from "@/components/svg/AppLogo";
 
@@ -67,13 +67,6 @@ const menuList = [
     link: "#",
   },
 ];
-
-const props = defineProps(["expandedStyleValue", "notExpandedStyleValue"]);
-
-const navbarStyles = {
-  expanded: `md:w-${props.expandedStyleValue}`,
-  notExpanded: `md:w-${props.notExpandedStyleValue}`,
-};
 
 const isNavbarExpanded = ref(false);
 const toggleNavbar = () => {
