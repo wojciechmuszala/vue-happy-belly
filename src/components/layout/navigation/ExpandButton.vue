@@ -1,13 +1,9 @@
 <template>
   <div
-    class="hidden translate-x-1/2 justify-center text-center md:mt-auto md:flex md:w-full"
+    class="hover:bg-dark-blue-lighter absolute right-0 hidden h-8 w-8 translate-x-1/2 items-center justify-center rounded-full bg-dark-blue p-3 text-center text-xl transition-all duration-300 md:flex"
+    :class="isNavbarExpanded ? '-rotate-180' : 'rotate-0'"
   >
-    <div
-      class="hover:bg-dark-blue-lighter flex h-12 w-12 items-center justify-center rounded-full bg-dark-blue p-3 text-xl transition-all duration-300"
-      :class="isNavbarExpanded ? '-rotate-180' : 'rotate-0'"
-    >
-      >
-    </div>
+    <font-awesome-icon :icon="['fas', 'chevron-right']" />
   </div>
 </template>
 

@@ -5,7 +5,7 @@
     <the-navigation @get-navbar-state="handleNavbarState"></the-navigation>
     <main-content
       class="transition-all duration-300 ease-in-out"
-      :class="isNavbarExpanded ? 'md:ml-52' : 'md:ml-32'"
+      :class="isNavbarExpanded ? 'md:ml-64' : 'md:ml-32'"
     ></main-content>
   </div>
 </template>
@@ -21,4 +21,14 @@ const handleNavbarState = (navbarState) => {
 };
 </script>
 
-<style></style>
+<style>
+.show-enter-from,
+.show-leave-to {
+  opacity: 0;
+}
+
+.show-enter-active,
+.show-leave-active {
+  transition: opacity 0.3s ease;
+}
+</style>
