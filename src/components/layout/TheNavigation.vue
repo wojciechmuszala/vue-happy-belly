@@ -16,9 +16,13 @@
           v-for="menuItem in menuList"
           :key="menuItem"
           :to="menuItem.link"
-          class="hover:bg-dark-blue-lighter text-l flex rounded-full px-4 py-2 transition-all duration-300"
+          class="hover:bg-dark-blue-lighter text-l flex items-center rounded-full px-4 py-2 transition-all duration-300"
         >
-          <span>{{ menuItem.icon }}</span>
+          <font-awesome-icon
+            v-if="menuItem.faIcon"
+            :icon="menuItem.faIcon"
+            class="h-6"
+          />
           <transition name="show" mode="out-in">
             <span v-show="isNavbarExpanded" class="ml-3 truncate">{{
               menuItem.title
@@ -29,7 +33,7 @@
       <expand-button
         @click="toggleNavbar"
         :is-navbar-expanded="isNavbarExpanded"
-      ></expand-button>
+      />
     </menu>
   </header>
 </template>
@@ -44,27 +48,27 @@ const menuList = [
   {
     title: "Home",
     link: "/",
-    icon: "☺",
+    faIcon: ["fas", "house"],
   },
   {
     title: "Recipes list",
     link: "/recipes",
-    icon: "☺",
+    faIcon: ["fas", "bowl-food"],
   },
   {
     title: "Link 2",
     link: "#",
-    icon: "☺",
+    faIcon: "",
   },
   {
     title: "Eueue",
     link: "#",
-    icon: "☺",
+    faIcon: "",
   },
   {
     title: "Link 4",
     link: "#",
-    icon: "☺",
+    faIcon: "",
   },
 ];
 
