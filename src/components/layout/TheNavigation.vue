@@ -1,14 +1,14 @@
 <template>
   <header
     class="fixed left-0 top-0 w-full bg-dark-blue transition-all duration-300 ease-in-out md:h-svh"
-    :class="isNavbarExpanded ? 'md:w-64' : 'md:w-32'"
+    :class="isNavbarExpanded ? 'md:w-60' : 'md:w-24'"
   >
     <menu
-      class="bg-inherit flex w-full flex-row-reverse items-center justify-between p-5 text-light-yellow md:h-full md:flex-col md:px-9 md:py-8"
+      class="bg-inherit flex w-full flex-row-reverse items-center justify-between p-5 text-light-yellow md:h-full md:flex-col md:px-5 md:py-8"
     >
       <burger-menu @click="toggleMenu" :is-menu-visible="isMenuVisible" />
       <nav
-        class="bg-inherit absolute bottom-0 left-0 z-[-10] flex w-full flex-col justify-center gap-3 py-5 shadow-lg transition-all duration-500 md:static md:z-auto md:justify-center md:shadow-none"
+        class="bg-inherit absolute bottom-0 left-0 z-[-10] flex w-full flex-col justify-center gap-3 py-5 shadow-lg transition-all duration-500 md:static md:z-auto md:transform-none md:justify-center md:shadow-none"
         :class="{
           'translate-y-full': isMenuVisible,
         }"
@@ -18,6 +18,7 @@
           :key="menuItem"
           :to="menuItem.link"
           class="hover:bg-dark-blue-lighter text-l flex items-center rounded-full px-4 py-2 transition-all duration-300"
+          @click="toggleMenu"
         >
           <font-awesome-icon
             v-if="menuItem.faIcon"
@@ -57,7 +58,7 @@ const menuList = [
   },
   {
     title: "Meal draw",
-    link: "#",
+    link: "/meal-draw",
     faIcon: ["fas", "dice"],
   },
 ];
@@ -78,4 +79,8 @@ const sendNavbarExpandInfo = () =>
   emit("getNavbarState", isNavbarExpanded.value);
 </script>
 
-<style scoped></style>
+<style scoped>
+.router-link-active {
+  @apply text-normal-orange;
+}
+</style>

@@ -5,7 +5,7 @@
     <the-navigation @get-navbar-state="handleNavbarState"></the-navigation>
     <main-content
       class="transition-all duration-300 ease-in-out"
-      :class="isNavbarExpanded ? 'md:ml-64' : 'md:ml-32'"
+      :class="isNavbarExpanded ? 'md:ml-60' : 'md:ml-24'"
     ></main-content>
   </div>
 </template>

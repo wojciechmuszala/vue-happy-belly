@@ -1,14 +1,33 @@
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
+  //General
   faChevronRight,
+
+  //User
+  faUser,
+  faRightToBracket,
+
+  //Nav
   faHouse,
   faBowlFood,
   faDice,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const useFontAwesomeIcon = () => {
-  library.add(faChevronRight, faHouse, faDice, faBowlFood);
+  library.add(
+    // General:
+    faChevronRight,
+
+    // User:
+    faUser,
+    faRightToBracket,
+
+    // Nav:
+    faHouse,
+    faDice,
+    faBowlFood,
+  );
 
   return {
     FontAwesomeIcon,

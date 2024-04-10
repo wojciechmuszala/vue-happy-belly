@@ -1,8 +1,8 @@
 <template>
-  <a v-if="type === 'link'" class="btn">
+  <a v-if="type === 'link'" class="inline-block rounded-full px-4 py-2.5">
     <slot></slot>
   </a>
-  <button v-else class="btn">
+  <button v-else class="inline-block rounded-full px-4 py-2.5">
     <slot></slot>
   </button>
 </template>
@@ -13,11 +13,10 @@ defineProps(["type"]);
 </script>
 
 <style scoped>
-.btn {
-  @apply inline-block rounded-full px-4 py-2.5;
-}
-
 .btn-primary {
-  @apply bg-orange font-semibold text-dark-blue;
+  @apply text-normal-orange bg-dark-blue font-semibold;
+}
+.btn-secondary {
+  @apply bg-normal-orange font-semibold text-dark-blue;
 }
 </style>
