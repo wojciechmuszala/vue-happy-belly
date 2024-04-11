@@ -8,7 +8,7 @@
     >
       <burger-menu @click="toggleMenu" :is-menu-visible="isMenuVisible" />
       <nav
-        class="bg-inherit absolute bottom-0 left-0 z-[-10] flex w-full flex-col justify-center gap-3 py-5 shadow-lg transition-all duration-500 md:static md:z-auto md:transform-none md:justify-center md:shadow-none"
+        class="bg-inherit absolute bottom-0 left-0 z-[-10] flex w-full flex-col justify-center gap-3 py-5 shadow-lg transition-all duration-500 md:static md:z-auto md:transform-none md:shadow-none"
         :class="{
           'translate-y-full': isMenuVisible,
         }"

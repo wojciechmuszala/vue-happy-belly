@@ -1,10 +1,7 @@
 <template>
-  <div
-    class="flex min-h-screen flex-col overflow-hidden font-quicksand text-dark-blue"
-  >
+  <div class="overflow-hidden font-quicksand text-dark-blue">
     <the-navigation @get-navbar-state="handleNavbarState"></the-navigation>
     <main-content
-      class="transition-all duration-300 ease-in-out"
       :class="isNavbarExpanded ? 'md:ml-60' : 'md:ml-24'"
     ></main-content>
   </div>

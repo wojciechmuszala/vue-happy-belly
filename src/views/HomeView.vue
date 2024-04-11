@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex min-h-screen items-center justify-center">
     <the-logo></the-logo>
   </div>
 </template>

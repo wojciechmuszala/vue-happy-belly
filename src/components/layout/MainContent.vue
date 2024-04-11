@@ -1,5 +1,5 @@
 <template>
-  <main class="flex flex-1 items-center justify-center">
+  <main class="min-h-screen transition-all duration-300 ease-in-out">
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
         <component :is="Component"></component>

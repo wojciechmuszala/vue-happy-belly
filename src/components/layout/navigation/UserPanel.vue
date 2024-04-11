@@ -1,7 +1,10 @@
 <template>
-  <div class="flex items-center gap-3 md:gap-4 md:px-1">
+  <router-link
+    :to="store.user.isLogged ? '/x' : '/user-auth'"
+    class="hover:bg-dark-blue-lighter flex w-full items-center gap-3 rounded-full px-2 py-2 transition-all duration-300 md:gap-4"
+  >
     <div
-      class="bg-white flex h-12 w-12 items-center justify-center rounded-full"
+      class="bg-white flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
     >
       <img
         v-if="store.user.isLogged"
@@ -14,16 +17,15 @@
         class="text-2xl text-dark-blue"
       />
     </div>
-    <div
-      class="max-w-28 truncate transition-all duration-300"
-      :class="{ 'md:opacity-0': !isNavbarExpanded }"
+    <span
+      class="max-w-28 truncate pr-1 transition-all duration-300"
+      :class="{
+        'hidden md:block': store.user.isLogged,
+      }"
     >
-      <span v-if="store.user.isLogged" class="hidden md:block">
-        {{ store.user.nickName }}</span
-      >
-      <span v-else>Sign in</span>
-    </div>
-  </div>
+      {{ store.user.isLogged ? store.user.nickName : "Sign in" }}
+    </span>
+  </router-link>
 </template>
 
 <script setup>
