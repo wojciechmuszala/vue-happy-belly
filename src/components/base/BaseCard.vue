@@ -11,12 +11,15 @@ defineProps(["type"]);
 
 <style scoped>
 .card-primary {
-  @apply text-white bg-dark-blue;
+  @apply bg-dark-blue text-light-yellow;
 }
 .card-secondary {
   @apply bg-normal-orange text-dark-blue;
 }
 .card-tertiary {
   @apply bg-gray-100 text-dark-blue;
+}
+.card-quternary {
+  @apply bg-white border border-dark-blue text-dark-blue;
 }
 </style>

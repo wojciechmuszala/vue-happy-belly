@@ -23,9 +23,9 @@
           <font-awesome-icon
             v-if="menuItem.faIcon"
             :icon="menuItem.faIcon"
-            class="h-6 w-6"
+            class="h-6 w-5 max-w-5"
           />
-          <span class="ml-3 truncate">{{ menuItem.title }}</span>
+          <span class="ml-4 truncate">{{ menuItem.title }}</span>
         </router-link>
       </nav>
       <div class="md:flex md:w-full md:items-center">
@@ -52,14 +52,14 @@ const menuList = [
     faIcon: ["fas", "house"],
   },
   {
-    title: "Recipes list",
+    title: "Recipes",
     link: "/recipes",
-    faIcon: ["fas", "bowl-food"],
+    faIcon: ["fas", "book"],
   },
   {
-    title: "Meal draw",
-    link: "/meal-draw",
-    faIcon: ["fas", "dice"],
+    title: "Meal planner",
+    link: "/meal-planner",
+    faIcon: ["fas", "plate-wheat"],
   },
 ];
 

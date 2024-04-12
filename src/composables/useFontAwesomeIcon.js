@@ -10,8 +10,8 @@ import {
 
   //Nav
   faHouse,
-  faBowlFood,
-  faDice,
+  faBook,
+  faPlateWheat,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const useFontAwesomeIcon = () => {
@@ -25,8 +25,8 @@ export const useFontAwesomeIcon = () => {
 
     // Nav:
     faHouse,
-    faDice,
-    faBowlFood,
+    faBook,
+    faPlateWheat,
   );
 
   return {

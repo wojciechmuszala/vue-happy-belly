@@ -1,31 +1,14 @@
 <template>
-  <div class="flex min-h-screen items-center justify-center">
-    <div class="w-1/2">
-      <div v-if="!isUserRegistered">
-        <sign-in></sign-in>
-        <p class="mt-2 text-center">
-          Don't have an account yet?
-          <button
-            class="hover:text-normal-orange underline"
-            @click="toggleLoginRegister"
-          >
-            Register here!
-          </button>
-        </p>
-      </div>
-      <div v-if="isUserRegistered">
-        <sign-up></sign-up>
-        <p class="mt-5 text-center">
-          Already have an account?
-          <button
-            class="hover:text-normal-orange underline"
-            @click="toggleLoginRegister"
-          >
-            Log in here
-          </button>
-        </p>
-      </div>
-    </div>
+  <div class="flex min-h-screen justify-center">
+    <base-card class="card-quternary h-max w-1/2 max-w-screen-sm">
+      <sign-in :toggleLoginRegister="toggleLoginRegister"></sign-in>
+      <transition name="expand">
+        <sign-up
+          v-show="!isUserRegistered"
+          class="mt-6 overflow-hidden border-t border-t-dark-blue pt-6"
+        ></sign-up>
+      </transition>
+    </base-card>
   </div>
 </template>
 
@@ -37,8 +20,23 @@ import SignUp from "../components/layout/user-auth/SignUp";
 
 const isUserRegistered = ref(true);
 const toggleLoginRegister = () => {
-  isUserRegistered.value = !isUserRegistered.value;
+  isUserRegistered.value = false;
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.expand-leave-active,
+.expand-enter-active {
+  @apply transition-all duration-1000 ease-in;
+}
+
+.expand-enter-to,
+.expand-leave-from {
+  @apply max-h-[9999px];
+}
+
+.expand-enter-from,
+.expand-leave-to {
+  @apply max-h-0;
+}
+</style>

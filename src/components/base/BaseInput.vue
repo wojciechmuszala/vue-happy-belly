@@ -3,7 +3,7 @@
     <input
       v-model="inputValue"
       :id="id"
-      class="peer w-full rounded-full border border-dark-blue px-5 py-2 text-dark-blue focus:outline-none"
+      class="bg-white peer w-full rounded-full border border-dark-blue px-5 py-2 text-dark-blue focus:outline-none"
     />
     <label
       :for="id"
@@ -11,7 +11,7 @@
       :class="
         inputValue
           ? '-top-1 left-4 px-1 py-0 text-xs text-dark-blue'
-          : 'text-gray-300'
+          : 'text-dark-blue/[0.2]'
       "
       >{{ label }}</label
     >

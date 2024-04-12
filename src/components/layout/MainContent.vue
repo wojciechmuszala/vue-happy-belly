@@ -2,7 +2,7 @@
   <main class="min-h-screen transition-all duration-300 ease-in-out">
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
-        <component :is="Component"></component>
+        <component :is="Component" class="py-20"></component>
       </transition>
     </router-view>
   </main>
