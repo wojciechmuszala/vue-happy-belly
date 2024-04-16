@@ -23,7 +23,7 @@
         'hidden md:block': store.user.isLogged,
       }"
     >
-      {{ store.user.isLogged ? store.user.nickName : "Sign in" }}
+      {{ store.user.isLogged ? store.user.nickname : "Sign in" }}
     </span>
   </router-link>
 </template>
@@ -34,7 +34,6 @@ import { useUsersStore } from "@/stores/users.js";
 
 defineProps(["isNavbarExpanded"]);
 const store = useUsersStore();
-console.log(store.user);
 </script>
 
 <style scoped></style>
