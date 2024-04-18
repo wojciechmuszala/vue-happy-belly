@@ -1,12 +1,20 @@
 <template>
   <div class="group relative">
     <input
-      :type="type"
+      @input="handleInput($event)"
+      @blur="handleBlur($event)"
       :id="id"
+      :type="type"
       :value="modelValue"
-      @input="emitInputValue($event)"
       class="bg-white peer w-full rounded-full border border-dark-blue px-5 py-2 text-dark-blue focus:outline-none"
-      :class="inputClass"
+      :class="[
+        inputClass,
+        firstCharacterTyped
+          ? validateFunction && validateFunction()
+            ? ''
+            : 'border-red-500'
+          : '',
+      ]"
     />
     <label
       :for="id"
@@ -23,7 +31,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from "vue";
+import { ref, defineProps, defineEmits } from "vue";
 
 const props = defineProps([
   "id",
@@ -34,11 +42,15 @@ const props = defineProps([
   "modelValue",
   "modelModifiers",
   "validateFunction",
+  "onInput",
+  "onBlur",
 ]);
 const emit = defineEmits(["update:modelValue"]);
 
+const firstCharacterTyped = ref(false);
 const emitInputValue = (event) => {
-  props.validateFunction();
+  firstCharacterTyped.value = true;
+  props.validateFunction && props.validateFunction();
   let value = event.target.value;
 
   //place to add custom model modifiers
@@ -47,6 +59,13 @@ const emitInputValue = (event) => {
   } */
 
   emit("update:modelValue", value);
+};
+
+const handleInput = (event) => {
+  props.onInput != undefined && emitInputValue(event);
+};
+const handleBlur = (event) => {
+  props.onBlur != undefined && emitInputValue(event);
 };
 </script>
 
