@@ -1,3 +1,4 @@
+import { ref } from "vue";
 import { auth } from "@/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useInputValidation } from "@/composables/useInputValidation";
@@ -25,35 +26,36 @@ export const useSignUp = (login, email, password, repeatPassword) => {
 
   const successMessages = [
     {
-      text: "✔ No break characters in login",
+      text: "No break characters in login",
       function: () => validateWhiteSpaces(login.value),
     },
     {
-      text: "✔ The email has the correct format",
+      text: "The email has the correct format",
       function: () => validateEmail(email.value),
     },
     {
-      text: "✔ The password consists of at least 8 characters",
+      text: "The password consists of at least 8 characters",
       function: () => validatePasswordLength(password.value),
     },
     {
-      text: "✔ The password has at least 1 capital letter",
+      text: "The password has at least 1 capital letter",
       function: () => validateCapitalLetter(password.value),
     },
     {
-      text: "✔ The password has at least 1 number",
+      text: "The password has at least 1 number",
       function: () => validateNumber(password.value),
     },
     {
-      text: "✔ The password has at least 1 special letter",
+      text: "The password has at least 1 special letter",
       function: () => validateSpecialCharacter(password.value),
     },
     {
-      text: "✔ The first and repeated password are the same",
+      text: "The first and repeated password are the same",
       function: () => checkPasswordMatch(),
     },
   ];
 
+  const errorMessage = ref("");
   const signUpWithEmail = async () => {
     if (
       checkLogin() &&
@@ -61,9 +63,17 @@ export const useSignUp = (login, email, password, repeatPassword) => {
       checkPassword() &&
       checkPasswordMatch()
     ) {
-      await createUserWithEmailAndPassword(auth, email.value, password.value);
+      try {
+        await createUserWithEmailAndPassword(auth, email.value, password.value);
 
-      console.log("Success!");
+        console.log("Success!");
+      } catch (error) {
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            errorMessage.value = "Email already in use";
+            break;
+        }
+      }
     } else {
       console.log("Fulfill all conditions.");
     }
@@ -76,5 +86,6 @@ export const useSignUp = (login, email, password, repeatPassword) => {
     checkPassword,
     checkPasswordMatch,
     signUpWithEmail,
+    errorMessage,
   };
 };

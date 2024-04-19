@@ -1,5 +1,5 @@
 export const useInputValidation = () => {
-  
+  const validateEmpty = (value) => value.length > 0;
   const validateWhiteSpaces = (value) => !/\s/.test(value) && value.length > 0;
   const validateEmail = (value) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) && value.length > 0;
@@ -12,8 +12,8 @@ export const useInputValidation = () => {
   const validatePasswordMatch = (value1, value2) =>
     value1 === value2 && value2.length > 0;
 
-
   return {
+    validateEmpty,
     validateWhiteSpaces,
     validateEmail,
     validatePasswordLength,

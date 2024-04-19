@@ -3,16 +3,18 @@
     <h2 class="mb-8 text-center text-3xl">Sign in</h2>
     <form class="flex flex-col gap-5" @submit.prevent="signIn">
       <base-input
-        id="login"
+        onInput
+        id="email"
         type="text"
-        label="Login or email"
-        v-model.trim="loginOrEmail"
+        label="E-mail"
+        v-model.trim="email"
       ></base-input>
       <base-input
+        onInput
         id="password"
         type="password"
         label="Password"
-        v-model.trim="password"
+        v-model="password"
       ></base-input>
       <base-button class="btn-primary">Sign In</base-button>
     </form>
@@ -32,11 +34,11 @@
 import { ref, defineProps } from "vue";
 defineProps(["toggleLoginRegister"]);
 
-const loginOrEmail = ref("");
+const email = ref("");
 const password = ref("");
 
 const signIn = () => {
-  console.log(loginOrEmail.value, password.value);
+  console.log(email.value, password.value);
 };
 </script>
 

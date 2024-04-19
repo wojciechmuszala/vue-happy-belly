@@ -3,6 +3,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   //General
   faChevronRight,
+  faPersonDigging,
 
   //User
   faUser,
@@ -18,6 +19,7 @@ export const useFontAwesomeIcon = () => {
   library.add(
     // General:
     faChevronRight,
+    faPersonDigging,
 
     // User:
     faUser,

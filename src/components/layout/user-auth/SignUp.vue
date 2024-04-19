@@ -1,6 +1,12 @@
+<!-- 
+TODO : Move message div to new component
+TODO : Move base config to object, generate inputs by v-for
+-->
+
 <template>
   <div>
     <h2 class="mb-8 text-center text-3xl">Sign up</h2>
+
     <form class="flex flex-col gap-5" @submit.prevent="signUpWithEmail">
       <base-input
         onBlur
@@ -35,18 +41,24 @@
         handleInput
         :validate-function="checkPasswordMatch"
       ></base-input>
+      <div class="mx-1 flex flex-col gap-1">
+        <p
+          v-if="errorMessage"
+          class="text-red-500 flex items-center gap-2 before:text-3xl before:content-['×']"
+        >
+          {{ errorMessage }}
+        </p>
+        <p
+          v-for="message in successMessages"
+          :key="message"
+          class="flex items-center gap-2 transition-all duration-500 before:content-['✔']"
+          :class="message.function() ? 'opacity-100' : 'opacity-20'"
+        >
+          {{ message.text }}
+        </p>
+      </div>
       <base-button class="btn-primary">Sign Up</base-button>
     </form>
-    <div class="mx-2 mt-5 flex flex-col gap-1">
-      <p
-        v-for="message in successMessages"
-        :key="message"
-        class="transition-all duration-500"
-        :class="message.function() ? 'opacity-100' : 'opacity-20'"
-      >
-        {{ message.text }}
-      </p>
-    </div>
   </div>
 </template>
 
@@ -66,6 +78,7 @@ const {
   checkPassword,
   checkPasswordMatch,
   signUpWithEmail,
+  errorMessage,
 } = useSignUp(login, email, password, repeatPassword);
 </script>
 
