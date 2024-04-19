@@ -7,7 +7,7 @@
         id="login"
         type="text"
         label="Login"
-        v-model="login"
+        v-model.trim="login"
         :validate-function="checkLogin"
       ></base-input>
       <base-input
@@ -15,7 +15,7 @@
         id="e-mail"
         type="email"
         label="E-mail"
-        v-model="email"
+        v-model.trim="email"
         :validate-function="checkEmail"
       ></base-input>
       <base-input
@@ -100,7 +100,7 @@ const successMessages = [
   },
   {
     text: "✔ The first and repeated password are the same",
-    function: () => validatePasswordMatch(password.value, repeatPassword.value),
+    function: () => checkPasswordMatch(),
   },
 ];
 
