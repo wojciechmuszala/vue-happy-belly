@@ -1,3 +1,5 @@
+import { auth } from "@/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useInputValidation } from "@/composables/useInputValidation";
 export const useSignUp = (login, email, password, repeatPassword) => {
   const {
@@ -52,14 +54,14 @@ export const useSignUp = (login, email, password, repeatPassword) => {
     },
   ];
 
-  const signUpWithEmail = () => {
+  const signUpWithEmail = async () => {
     if (
       checkLogin() &&
       checkEmail() &&
       checkPassword() &&
       checkPasswordMatch()
     ) {
-      // await createUserWithEmailAndPassword(getAuth(), email.value, password.value);
+      await createUserWithEmailAndPassword(auth, email.value, password.value);
 
       console.log("Success!");
     } else {

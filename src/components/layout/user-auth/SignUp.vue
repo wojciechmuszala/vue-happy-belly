@@ -12,7 +12,7 @@
       ></base-input>
       <base-input
         onBlur
-        id="e-mail"
+        id="email"
         type="email"
         label="E-mail"
         v-model.trim="email"
@@ -51,12 +51,9 @@
 </template>
 
 <script setup>
-// TODO: 1. przeniesc klasy odpowiedzialne za border do BaseInput i uzaleznic od validationFunction
-// TODO: 2. zmienic kolor dla p na szary gdy OK to zielony lub czarny semibold
-
 import { ref } from "vue";
 import { useSignUp } from "@/composables/useSignUp";
-// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
 const login = ref("");
 const email = ref("");
 const password = ref("");
@@ -70,8 +67,6 @@ const {
   checkPasswordMatch,
   signUpWithEmail,
 } = useSignUp(login, email, password, repeatPassword);
-
-console.log(successMessages[0].function());
 </script>
 
 <style lang="scss" scoped></style>

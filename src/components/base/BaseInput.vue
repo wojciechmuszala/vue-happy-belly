@@ -57,7 +57,6 @@ const emitInputValue = (event) => {
   } */
 
   emit("update:modelValue", value);
-  console.log(props.validateFunction());
 };
 
 const checkIsInputValid = () =>
