@@ -1,6 +1,7 @@
 <!-- 
 TODO : Move message div to new component
 TODO : Move base config to object, generate inputs by v-for
+TODO : Add animaiton to success and error messages
 -->
 
 <template>
@@ -41,22 +42,10 @@ TODO : Move base config to object, generate inputs by v-for
         handleInput
         :validate-function="checkPasswordMatch"
       ></base-input>
-      <div class="mx-1 flex flex-col gap-1">
-        <p
-          v-if="errorMessage"
-          class="text-red-500 flex items-center gap-2 before:text-3xl before:content-['×']"
-        >
-          {{ errorMessage }}
-        </p>
-        <p
-          v-for="message in successMessages"
-          :key="message"
-          class="flex items-center gap-2 transition-all duration-500 before:content-['✔']"
-          :class="message.function() ? 'opacity-100' : 'opacity-20'"
-        >
-          {{ message.text }}
-        </p>
-      </div>
+      <auth-announcements
+        :error-message="errorMessage"
+        :conditions-for-registration="conditionsForRegistration"
+      />
       <base-button class="btn-primary">Sign Up</base-button>
     </form>
   </div>
@@ -64,7 +53,8 @@ TODO : Move base config to object, generate inputs by v-for
 
 <script setup>
 import { ref } from "vue";
-import { useSignUp } from "@/composables/useSignUp";
+import { useUserAuth } from "@/composables/useUserAuth";
+import AuthAnnouncements from "./AuthAnnouncements.vue";
 
 const login = ref("");
 const email = ref("");
@@ -72,14 +62,14 @@ const password = ref("");
 const repeatPassword = ref("");
 
 const {
-  successMessages,
+  conditionsForRegistration,
   checkLogin,
   checkEmail,
   checkPassword,
   checkPasswordMatch,
   signUpWithEmail,
   errorMessage,
-} = useSignUp(login, email, password, repeatPassword);
+} = useUserAuth({ login, email, password, repeatPassword });
 </script>
 
 <style lang="scss" scoped></style>

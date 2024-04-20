@@ -6,7 +6,7 @@
       :id="id"
       :type="type"
       :value="modelValue"
-      class="bg-white peer w-full rounded-full border border-dark-blue px-5 py-2 text-dark-blue focus:outline-none"
+      class="bg-white peer w-full rounded-full border border-dark-blue px-5 py-2.5 text-dark-blue focus:outline-none"
       :class="[
         inputClass,
         {

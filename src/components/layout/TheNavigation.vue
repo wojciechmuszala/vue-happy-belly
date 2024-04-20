@@ -28,7 +28,7 @@
           <span class="ml-4 truncate">{{ menuItem.title }}</span>
         </router-link>
       </nav>
-      <div class="md:flex md:w-full md:items-center">
+      <div class="md:flex md:w-full md:items-end">
         <user-panel :is-navbar-expanded="isNavbarExpanded" />
         <expand-button
           @click="toggleNavbar"

@@ -1,8 +1,21 @@
-import { ref } from "vue";
-import { auth } from "@/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
 import { useInputValidation } from "@/composables/useInputValidation";
-export const useSignUp = (login, email, password, repeatPassword) => {
+
+import { auth } from "@/firebase";
+import { useUsersStore } from "@/stores/users.js";
+
+export const useUserAuth = ({ login, email, password, repeatPassword }) => {
+  const store = useUsersStore();
+  const router = useRouter();
+  const errorMessage = ref();
+
   const {
     validateWhiteSpaces,
     validateEmail,
@@ -24,7 +37,7 @@ export const useSignUp = (login, email, password, repeatPassword) => {
     checkPassword &&
     validatePasswordMatch(password.value, repeatPassword.value);
 
-  const successMessages = [
+  const conditionsForRegistration = [
     {
       text: "No break characters in login",
       function: () => validateWhiteSpaces(login.value),
@@ -55,7 +68,6 @@ export const useSignUp = (login, email, password, repeatPassword) => {
     },
   ];
 
-  const errorMessage = ref("");
   const signUpWithEmail = async () => {
     errorMessage.value = "";
     if (
@@ -66,8 +78,8 @@ export const useSignUp = (login, email, password, repeatPassword) => {
     ) {
       try {
         await createUserWithEmailAndPassword(auth, email.value, password.value);
-
         console.log("Success!");
+        router.push("/");
       } catch (error) {
         switch (error.code) {
           case "auth/network-request-failed":
@@ -95,13 +107,69 @@ export const useSignUp = (login, email, password, repeatPassword) => {
     }
   };
 
+  const handleSignInWithEmail = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email.value, password.value);
+
+      store.user = {
+        ...store.user,
+        isLogged: true,
+        email: email.value,
+        login: email.value,
+      };
+      router.push("/");
+    } catch (error) {
+      switch (error.code) {
+        case "auth/invalid-email":
+          errorMessage.value =
+            "Invalid email address. Please enter a valid email.";
+          break;
+        case "auth/user-disabled":
+          errorMessage.value =
+            "Your account has been disabled. Please contact support.";
+          break;
+        case "auth/user-not-found":
+          errorMessage.value =
+            "Account not found. Please check your email address.";
+          break;
+        case "auth/wrong-password":
+          errorMessage.value = "Incorrect password. Please try again.";
+          break;
+        case "auth/network-request-failed":
+          errorMessage.value =
+            "Failed to sign in. Please check your internet connection and try again.";
+          break;
+        // Dodaj więcej przypadków obsługi błędów, jeśli to konieczne
+        default:
+          errorMessage.value = "An error occurred. Please try again later.";
+      }
+    }
+  };
+
+  const handleSignOut = async () => {
+    await signOut(auth);
+    router.push("/");
+  };
+
+  onMounted(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        store.user.isLogged = true;
+      } else {
+        store.user.isLogged = false;
+      }
+    });
+  });
+
   return {
-    successMessages,
+    conditionsForRegistration,
     checkLogin,
     checkEmail,
     checkPassword,
     checkPasswordMatch,
     signUpWithEmail,
+    handleSignInWithEmail,
+    handleSignOut,
     errorMessage,
   };
 };

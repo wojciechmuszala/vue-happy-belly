@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="mb-8 text-center text-3xl">Sign in</h2>
-    <form class="flex flex-col gap-5" @submit.prevent="signInWithEmail">
+    <form class="flex flex-col gap-5" @submit.prevent="handleSignInWithEmail">
       <base-input
         onInput
         id="email"
@@ -29,13 +29,13 @@
 
 <script setup>
 import { ref, defineProps } from "vue";
-import { useSignIn } from "@/composables/useSignIn.js";
+import { useUserAuth } from "@/composables/useUserAuth.js";
 
 defineProps(["showSignUp"]);
 
 const email = ref("");
 const password = ref("");
-const { signInWithEmail } = useSignIn(email, password);
+const { handleSignInWithEmail } = useUserAuth({ email, password });
 </script>
 
 <style lang="scss" scoped></style>
