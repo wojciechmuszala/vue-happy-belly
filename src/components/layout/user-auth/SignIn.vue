@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="mb-8 text-center text-3xl">Sign in</h2>
-    <form class="flex flex-col gap-5" @submit.prevent="signIn">
+    <form class="flex flex-col gap-5" @submit.prevent="signInWithEmail">
       <base-input
         onInput
         id="email"
@@ -20,10 +20,7 @@
     </form>
     <p class="mt-2 text-center">
       Don't have an account yet?
-      <button
-        class="hover:text-normal-orange underline"
-        @click="toggleLoginRegister"
-      >
+      <button class="hover:text-normal-orange underline" @click="showSignUp">
         Register here!
       </button>
     </p>
@@ -32,14 +29,13 @@
 
 <script setup>
 import { ref, defineProps } from "vue";
-defineProps(["toggleLoginRegister"]);
+import { useSignIn } from "@/composables/useSignIn.js";
+
+defineProps(["showSignUp"]);
 
 const email = ref("");
 const password = ref("");
-
-const signIn = () => {
-  console.log(email.value, password.value);
-};
+const { signInWithEmail } = useSignIn(email, password);
 </script>
 
 <style lang="scss" scoped></style>

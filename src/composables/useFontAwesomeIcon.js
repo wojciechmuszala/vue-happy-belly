@@ -7,6 +7,7 @@ import {
 
   //User
   faUser,
+  faUserTie,
   faRightToBracket,
 
   //Nav
@@ -23,6 +24,7 @@ export const useFontAwesomeIcon = () => {
 
     // User:
     faUser,
+    faUserTie,
     faRightToBracket,
 
     // Nav:

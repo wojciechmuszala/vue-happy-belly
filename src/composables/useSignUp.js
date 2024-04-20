@@ -57,6 +57,7 @@ export const useSignUp = (login, email, password, repeatPassword) => {
 
   const errorMessage = ref("");
   const signUpWithEmail = async () => {
+    errorMessage.value = "";
     if (
       checkLogin() &&
       checkEmail() &&
@@ -69,13 +70,28 @@ export const useSignUp = (login, email, password, repeatPassword) => {
         console.log("Success!");
       } catch (error) {
         switch (error.code) {
-          case "auth/email-already-in-use":
-            errorMessage.value = "Email already in use";
+          case "auth/network-request-failed":
+            errorMessage.value =
+              "Failed to sign up. Please check your internet connection and try again.";
             break;
+          case "auth/email-already-in-use":
+            errorMessage.value =
+              "This email address is already in use. Please use a different email address.";
+            break;
+          case "auth/operation-not-allowed":
+            errorMessage.value =
+              "Account creation via email and password is not enabled. Please contact support for assistance or try again later.";
+            break;
+          case "auth/too-many-requests":
+            errorMessage.value =
+              "Too many registration attempts. Please try again later.";
+            break;
+          default:
+            errorMessage.value = "An error occurred. Please try again later.";
         }
       }
     } else {
-      console.log("Fulfill all conditions.");
+      errorMessage.value = "Please complete all conditions below.";
     }
   };
 

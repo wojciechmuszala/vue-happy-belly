@@ -1,12 +1,11 @@
-import { ref } from "vue";
+import { reactive } from "vue";
 import { defineStore } from "pinia";
 
 export const useUsersStore = defineStore("users", () => {
-  const user = ref({
+  const user = reactive({
     isLogged: false,
-    nickname: "mojciech",
-    firstName: "Wojciech",
-    secondName: "Muszala",
+    email: "",
+    login: "",
     avatar: require("@/assets/images/dummy-avatar.png"),
   });
 

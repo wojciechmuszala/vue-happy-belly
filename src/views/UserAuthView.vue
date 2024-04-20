@@ -1,7 +1,7 @@
 <template>
   <div class="flex min-h-screen justify-center">
     <base-card class="card-quternary h-max w-1/2 max-w-screen-sm">
-      <sign-in :toggleLoginRegister="toggleLoginRegister"></sign-in>
+      <sign-in :showSignUp="showSignUp"></sign-in>
       <transition name="expand">
         <sign-up
           v-show="!isUserRegistered"
@@ -19,7 +19,7 @@ import SignIn from "../components/layout/user-auth/SignIn";
 import SignUp from "../components/layout/user-auth/SignUp";
 
 const isUserRegistered = ref(true);
-const toggleLoginRegister = () => {
+const showSignUp = () => {
   isUserRegistered.value = false;
 };
 </script>
