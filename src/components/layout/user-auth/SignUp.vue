@@ -43,9 +43,10 @@ TODO : Add animaiton to success and error messages
         :validate-function="checkPasswordMatch"
       ></base-input>
       <auth-announcements
-        :error-message="errorMessage"
-        :conditions-for-registration="conditionsForRegistration"
-      />
+        :errorMessage="errorMessage"
+        :conditionsForRegistration="conditionsForRegistration"
+      ></auth-announcements>
+
       <base-button class="btn-primary">Sign Up</base-button>
     </form>
   </div>
@@ -54,7 +55,7 @@ TODO : Add animaiton to success and error messages
 <script setup>
 import { ref } from "vue";
 import { useUserAuth } from "@/composables/useUserAuth";
-import AuthAnnouncements from "./AuthAnnouncements.vue";
+import AuthAnnouncements from "@/components/layout/user-auth/AuthAnnouncements.vue";
 
 const login = ref("");
 const email = ref("");

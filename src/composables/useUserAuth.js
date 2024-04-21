@@ -16,6 +16,16 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
   const router = useRouter();
   const errorMessage = ref();
 
+  const clearUser = () => {
+    store.user = {
+      ...store.user,
+      isLogged: false,
+      email: "",
+      login: "",
+      avatar: "",
+    };
+  };
+
   const {
     validateWhiteSpaces,
     validateEmail,
@@ -148,15 +158,22 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
 
   const handleSignOut = async () => {
     await signOut(auth);
+    clearUser();
+
     router.push("/");
   };
 
   const handleAutoSignIn = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        store.user.isLogged = true;
+        store.user = {
+          ...store.user,
+          isLogged: true,
+          email: user.email,
+          login: user.email,
+        };
       } else {
-        store.user.isLogged = false;
+        clearUser();
       }
     });
   };

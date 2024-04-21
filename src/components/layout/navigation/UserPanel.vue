@@ -1,17 +1,13 @@
 <template>
-  <div class="flex w-full flex-col justify-start">
-    <div
-      class="flex w-max p-2 transition-all"
-      :class="isNavbarExpanded ? 'flex-row' : 'flex-col-reverse gap-y-6'"
-    >
+  <div class="flex-col md:flex md:w-full md:items-center">
+    <div class="flex" v-if="store.user.isLogged">
       <font-awesome-icon
         :icon="['fas', 'right-from-bracket']"
-        class="hover:text-normal-orange h-4 px-4 transition-colors duration-300"
+        class="h-6 px-4"
         @click="handleSignOut"
       />
     </div>
-    <component
-      :is="store.user.isLogged ? 'div' : 'router-link'"
+    <router-link
       :to="store.user.isLogged ? '/x' : '/user-auth'"
       class="hover:bg-dark-blue-lighter flex w-full items-center gap-3 rounded-full px-2 py-2 transition-all duration-300 md:gap-4"
     >
@@ -41,14 +37,14 @@
         </div>
       </transition>
       <span
-        class="truncate transition-all duration-300"
+        class="max-w-28 truncate pr-1 transition-all duration-300"
         :class="{
           'hidden md:block': store.user.isLogged,
         }"
       >
         {{ store.user.isLogged ? store.user.login : "Sign in" }}
       </span>
-    </component>
+    </router-link>
   </div>
 </template>
 
