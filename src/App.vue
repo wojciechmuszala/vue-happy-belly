@@ -10,7 +10,13 @@
 <script setup>
 import TheNavigation from "./components/layout/TheNavigation";
 import MainContent from "./components/layout/MainContent";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { useUserAuth } from "@/composables/useUserAuth";
+
+const { handleAutoSignIn } = useUserAuth({});
+onMounted(() => {
+  handleAutoSignIn();
+});
 
 const isNavbarExpanded = ref(false);
 const handleNavbarState = (navbarState) => {

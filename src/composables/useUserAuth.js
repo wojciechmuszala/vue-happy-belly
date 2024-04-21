@@ -1,4 +1,4 @@
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import {
   createUserWithEmailAndPassword,
@@ -68,7 +68,7 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
     },
   ];
 
-  const signUpWithEmail = async () => {
+  const handleSignUpWithEmail = async () => {
     errorMessage.value = "";
     if (
       checkLogin() &&
@@ -151,7 +151,7 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
     router.push("/");
   };
 
-  onMounted(() => {
+  const handleAutoSignIn = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         store.user.isLogged = true;
@@ -159,7 +159,7 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
         store.user.isLogged = false;
       }
     });
-  });
+  };
 
   return {
     conditionsForRegistration,
@@ -167,8 +167,9 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
     checkEmail,
     checkPassword,
     checkPasswordMatch,
-    signUpWithEmail,
+    handleSignUpWithEmail,
     handleSignInWithEmail,
+    handleAutoSignIn,
     handleSignOut,
     errorMessage,
   };

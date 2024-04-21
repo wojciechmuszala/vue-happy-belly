@@ -7,14 +7,7 @@
       <font-awesome-icon
         :icon="['fas', 'right-from-bracket']"
         class="hover:text-normal-orange h-4 px-4 transition-colors duration-300"
-      />
-      <font-awesome-icon
-        :icon="['fas', 'right-from-bracket']"
-        class="hover:text-normal-orange h-4 px-4 transition-colors duration-300"
-      />
-      <font-awesome-icon
-        :icon="['fas', 'right-from-bracket']"
-        class="hover:text-normal-orange h-4 px-4 transition-colors duration-300"
+        @click="handleSignOut"
       />
     </div>
     <component
@@ -62,9 +55,11 @@
 <script setup>
 import { defineProps } from "vue";
 import { useUsersStore } from "@/stores/users.js";
+import { useUserAuth } from "@/composables/useUserAuth";
 
 defineProps(["isNavbarExpanded"]);
 const store = useUsersStore();
+const { handleSignOut } = useUserAuth({});
 </script>
 
 <style scoped>

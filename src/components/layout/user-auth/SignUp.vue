@@ -8,7 +8,7 @@ TODO : Add animaiton to success and error messages
   <div>
     <h2 class="mb-8 text-center text-3xl">Sign up</h2>
 
-    <form class="flex flex-col gap-5" @submit.prevent="signUpWithEmail">
+    <form class="flex flex-col gap-5" @submit.prevent="handleSignUpWithEmail">
       <base-input
         onBlur
         id="login"
@@ -67,7 +67,7 @@ const {
   checkEmail,
   checkPassword,
   checkPasswordMatch,
-  signUpWithEmail,
+  handleSignUpWithEmail,
   errorMessage,
 } = useUserAuth({ login, email, password, repeatPassword });
 </script>
