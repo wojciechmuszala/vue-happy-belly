@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="mb-8 text-center text-3xl">Sign in</h2>
-    <form class="flex flex-col gap-5" @submit.prevent="signInWithEmail">
+    <form class="flex flex-col gap-5" @submit.prevent="handleSignInWithEmail">
       <base-input
         onInput
         id="email"
@@ -18,6 +18,7 @@
       ></base-input>
       <base-button class="btn-primary">Sign In</base-button>
     </form>
+    <auth-announcements :errorMessage="errorMessage"></auth-announcements>
     <p class="mt-2 text-center">
       Don't have an account yet?
       <button class="hover:text-normal-orange underline" @click="showSignUp">
@@ -29,13 +30,17 @@
 
 <script setup>
 import { ref, defineProps } from "vue";
-import { useSignIn } from "@/composables/useSignIn.js";
+import { useUserAuth } from "@/composables/useUserAuth.js";
+import AuthAnnouncements from "@/components/layout/user-auth/AuthAnnouncements.vue";
 
 defineProps(["showSignUp"]);
 
 const email = ref("");
 const password = ref("");
-const { signInWithEmail } = useSignIn(email, password);
+const { handleSignInWithEmail, errorMessage } = useUserAuth({
+  email,
+  password,
+});
 </script>
 
 <style lang="scss" scoped></style>

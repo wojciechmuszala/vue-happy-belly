@@ -7,7 +7,7 @@ export const useSignIn = (email, password) => {
   const store = useUsersStore();
   const errorMessage = ref();
 
-  const signInWithEmail = async () => {
+  const handleSignInWithEmail = async () => {
     try {
       await signInWithEmailAndPassword(auth, email.value, password.value);
 
@@ -46,7 +46,7 @@ export const useSignIn = (email, password) => {
   };
 
   return {
-    signInWithEmail,
+    handleSignInWithEmail,
     errorMessage,
   };
 };
