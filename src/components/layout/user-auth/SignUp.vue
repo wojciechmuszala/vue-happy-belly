@@ -5,7 +5,7 @@ TODO : Add animaiton to success and error messages
 -->
 
 <template>
-  <div>
+  <div class="mt-6 overflow-hidden border-t border-t-dark-blue pt-6">
     <h2 class="mb-8 text-center text-3xl">Sign up</h2>
 
     <form class="flex flex-col gap-5" @submit.prevent="handleSignUpWithEmail">

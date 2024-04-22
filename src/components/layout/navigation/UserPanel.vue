@@ -1,25 +1,33 @@
 <template>
-  <div class="flex-col md:flex md:w-full md:items-start">
+  <div
+    class="flex w-full flex-row-reverse items-center justify-end md:flex-col md:items-start"
+  >
     <transition name="fade" mode="out-in">
       <div
         v-if="store.user.isLogged"
-        class="mb-3 flex items-center justify-center overflow-hidden"
-        :class="isNavbarExpanded ? 'flex-row' : 'flex-col-reverse gap-y-4'"
+        class="flex items-center justify-center overflow-hidden md:mb-3"
+        :class="
+          isNavbarExpanded ? 'md:flex-row' : 'gap-y-4 md:flex-col-reverse'
+        "
       >
         <font-awesome-icon
           :icon="['fas', 'right-from-bracket']"
-          class="hover:text-normal-orange ml-5 h-5 cursor-pointer transition-colors duration-300"
+          class="hover:text-normal-orange ml-5 h-6 cursor-pointer transition-colors duration-300 md:h-5"
           @click="handleSignOut"
         />
         <font-awesome-icon
           :icon="['fas', 'gear']"
-          class="hover:text-normal-orange ml-5 h-5 cursor-pointer transition-colors duration-300"
+          class="hover:text-normal-orange ml-5 h-6 cursor-pointer transition-colors duration-300 md:h-5"
         />
       </div>
     </transition>
     <router-link
-      :to="store.user.isLogged ? '/x' : '/user-auth'"
-      class="hover:bg-dark-blue-lighter flex w-full items-center gap-3 rounded-full px-2 py-2 transition-all duration-300 md:gap-4"
+      to="/user-auth"
+      class="flex items-center gap-3 rounded-full px-2 py-2 transition-all duration-300 md:w-full md:gap-4"
+      :class="
+        store.user.isLogged ? 'cursor-default' : 'hover:bg-dark-blue-lighter'
+      "
+      @click="preventDefault($event)"
     >
       <transition name="bounce-in" mode="out-in">
         <div
@@ -63,6 +71,12 @@ import { defineProps } from "vue";
 import { useUsersStore } from "@/stores/users.js";
 import { useUserAuth } from "@/composables/useUserAuth";
 
+const preventDefault = (event) => {
+  if (store.user.isLogged) {
+    event.preventDefault();
+  }
+};
+
 defineProps(["isNavbarExpanded"]);
 const store = useUsersStore();
 const { handleSignOut } = useUserAuth({});
@@ -76,9 +90,11 @@ const { handleSignOut } = useUserAuth({});
   @apply animate-bounce-in-reverse;
 }
 
-.fade-leave-active,
-.fade-enter-active {
+.fade-leave-active {
   @apply transition-all duration-500 ease-in;
+}
+.fade-enter-active {
+  @apply transition-all delay-500 duration-500 ease-in;
 }
 
 .fade-enter-to,

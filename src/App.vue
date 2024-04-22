@@ -1,5 +1,7 @@
 <template>
-  <div class="overflow-hidden bg-light-yellow font-quicksand text-dark-blue">
+  <div
+    class="mt-5 overflow-hidden bg-light-yellow font-quicksand text-dark-blue md:mt-0"
+  >
     <the-navigation @get-navbar-state="handleNavbarState"></the-navigation>
     <main-content
       :class="isNavbarExpanded ? 'md:ml-60' : 'md:ml-24'"

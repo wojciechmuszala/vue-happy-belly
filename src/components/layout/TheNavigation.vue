@@ -4,7 +4,7 @@
     :class="isNavbarExpanded ? 'md:w-60' : 'md:w-24'"
   >
     <menu
-      class="bg-inherit flex w-full flex-row-reverse items-center justify-between p-5 text-light-yellow md:h-full md:flex-col md:px-5 md:py-8"
+      class="bg-inherit flex w-full flex-row-reverse items-center justify-between px-5 py-3 text-light-yellow md:h-full md:flex-col md:px-5 md:py-8"
     >
       <burger-menu @click="toggleMenu" :is-menu-visible="isMenuVisible" />
       <nav
@@ -28,7 +28,7 @@
           <span class="ml-4 truncate">{{ menuItem.title }}</span>
         </router-link>
       </nav>
-      <div class="md:flex md:w-full md:items-end">
+      <div class="md:flex w-full md:items-end">
         <user-panel :is-navbar-expanded="isNavbarExpanded" />
         <expand-button
           @click="toggleNavbar"

@@ -1,12 +1,9 @@
 <template>
-  <div class="flex min-h-screen justify-center">
-    <base-card class="card-quternary h-max w-1/2 max-w-screen-sm">
-      <sign-in :showSignUp="showSignUp"></sign-in>
+  <div class="flex min-h-screen w-full justify-center px-3">
+    <base-card class="card-quternary h-max max-w-screen-sm md:w-1/2">
+      <sign-in :showSignUp="showSignUp" />
       <transition name="expand">
-        <sign-up
-          v-show="!isUserRegistered"
-          class="mt-6 overflow-hidden border-t border-t-dark-blue pt-6"
-        ></sign-up>
+        <sign-up v-show="!isUserRegistered" />
       </transition>
     </base-card>
   </div>
