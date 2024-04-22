@@ -1,11 +1,13 @@
 <template>
   <div class="mx-1 flex flex-col gap-1">
-    <p
-      v-if="errorMessage"
-      class="text-red-500 flex items-center gap-2 before:text-3xl before:content-['×']"
-    >
-      {{ errorMessage }}
-    </p>
+    <transition name="fade" mode="out-in">
+      <p
+        v-if="errorMessage"
+        class="text-red-500 flex items-center gap-2 before:text-3xl before:content-['×']"
+      >
+        {{ errorMessage }}
+      </p>
+    </transition>
     <p
       v-for="condition in conditionsForRegistration"
       :key="condition"
@@ -22,4 +24,19 @@ import { defineProps } from "vue";
 defineProps(["errorMessage", "conditionsForRegistration"]);
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.fade-leave-active,
+.fade-enter-active {
+  @apply transition-all duration-300 ease-in;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  @apply opacity-100;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  @apply opacity-0;
+}
+</style>

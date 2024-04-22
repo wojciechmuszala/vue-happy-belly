@@ -129,7 +129,12 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
       };
       router.push("/");
     } catch (error) {
+      console.log(error.code);
       switch (error.code) {
+        case "auth/invalid-credential":
+          errorMessage.value =
+            "The login details you provided are incorrect. Please check your email address and password and try again.";
+          break;
         case "auth/invalid-email":
           errorMessage.value =
             "Invalid email address. Please enter a valid email.";
@@ -145,11 +150,11 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
         case "auth/wrong-password":
           errorMessage.value = "Incorrect password. Please try again.";
           break;
+
         case "auth/network-request-failed":
           errorMessage.value =
             "Failed to sign in. Please check your internet connection and try again.";
           break;
-        // Dodaj więcej przypadków obsługi błędów, jeśli to konieczne
         default:
           errorMessage.value = "An error occurred. Please try again later.";
       }

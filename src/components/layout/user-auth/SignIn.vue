@@ -16,9 +16,9 @@
         label="Password"
         v-model="password"
       ></base-input>
+      <auth-announcements :errorMessage="errorMessage" v-show="errorMessage"></auth-announcements>
       <base-button class="btn-primary">Sign In</base-button>
     </form>
-    <auth-announcements :errorMessage="errorMessage"></auth-announcements>
     <p class="mt-2 text-center">
       Don't have an account yet?
       <button class="hover:text-normal-orange underline" @click="showSignUp">
