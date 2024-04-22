@@ -1,12 +1,22 @@
 <template>
-  <div class="flex-col md:flex md:w-full md:items-center">
-    <div class="flex" v-if="store.user.isLogged">
-      <font-awesome-icon
-        :icon="['fas', 'right-from-bracket']"
-        class="h-6 px-4"
-        @click="handleSignOut"
-      />
-    </div>
+  <div class="flex-col md:flex md:w-full md:items-start">
+    <transition name="fade" mode="out-in">
+      <div
+        v-if="store.user.isLogged"
+        class="mb-3 flex items-center justify-center overflow-hidden"
+        :class="isNavbarExpanded ? 'flex-row' : 'flex-col-reverse gap-y-4'"
+      >
+        <font-awesome-icon
+          :icon="['fas', 'right-from-bracket']"
+          class="hover:text-normal-orange ml-5 h-5 cursor-pointer transition-colors duration-300"
+          @click="handleSignOut"
+        />
+        <font-awesome-icon
+          :icon="['fas', 'gear']"
+          class="hover:text-normal-orange ml-5 h-5 cursor-pointer transition-colors duration-300"
+        />
+      </div>
+    </transition>
     <router-link
       :to="store.user.isLogged ? '/x' : '/user-auth'"
       class="hover:bg-dark-blue-lighter flex w-full items-center gap-3 rounded-full px-2 py-2 transition-all duration-300 md:gap-4"
@@ -64,5 +74,20 @@ const { handleSignOut } = useUserAuth({});
 }
 .bounce-in-leave-active {
   @apply animate-bounce-in-reverse;
+}
+
+.fade-leave-active,
+.fade-enter-active {
+  @apply transition-all duration-500 ease-in;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  @apply opacity-100;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  @apply opacity-0;
 }
 </style>
