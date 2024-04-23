@@ -9,6 +9,7 @@ import BaseViewUnderConstruction from "./components/base/BaseViewUnderConstructi
 import BaseButton from "./components/base/BaseButton.vue";
 import BaseCard from "./components/base/BaseCard.vue";
 import BaseInput from "./components/base/BaseInput.vue";
+import BaseAnnouncement from "./components/base/BaseAnnouncement.vue";
 
 import "@/assets/styles/index.css";
 
@@ -24,5 +25,6 @@ app.component("base-view-under-construction", BaseViewUnderConstruction);
 app.component("base-button", BaseButton);
 app.component("base-card", BaseCard);
 app.component("base-input", BaseInput);
+app.component("base-announcement", BaseAnnouncement);
 
 app.mount("#app");
