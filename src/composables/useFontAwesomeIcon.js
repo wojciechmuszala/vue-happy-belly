@@ -8,8 +8,9 @@ import {
   //User
   faUser,
   faUserTie,
-  faRightFromBracket,
   faGear,
+  faBell,
+  faRightFromBracket,
 
   //Nav
   faHouse,
@@ -26,8 +27,9 @@ export const useFontAwesomeIcon = () => {
     // User:
     faUser,
     faUserTie,
-    faRightFromBracket,
     faGear,
+    faBell,
+    faRightFromBracket,
 
     // Nav:
     faHouse,

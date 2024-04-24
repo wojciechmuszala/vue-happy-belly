@@ -3,23 +3,11 @@
     class="flex w-full flex-row-reverse items-center justify-end md:flex-col md:items-start"
   >
     <transition name="fade" mode="out-in">
-      <div
+      <user-panel-nav
         v-if="store.user.isLogged"
-        class="flex items-center justify-center overflow-hidden md:mb-3"
-        :class="
-          isNavbarExpanded ? 'md:flex-row' : 'gap-y-4 md:flex-col-reverse'
-        "
-      >
-        <font-awesome-icon
-          :icon="['fas', 'right-from-bracket']"
-          class="hover:text-normal-orange ml-5 h-6 cursor-pointer transition-colors duration-300 md:h-5"
-          @click="handleSignOut"
-        />
-        <font-awesome-icon
-          :icon="['fas', 'gear']"
-          class="hover:text-normal-orange ml-5 h-6 cursor-pointer transition-colors duration-300 md:h-5"
-        />
-      </div>
+        :is-navbar-expanded="isNavbarExpanded"
+        :handle-sign-out="handleSignOut"
+      />
     </transition>
     <router-link
       to="/user-auth"
@@ -70,6 +58,7 @@
 import { defineProps } from "vue";
 import { useUsersStore } from "@/stores/users.js";
 import { useUserAuth } from "@/composables/useUserAuth";
+import UserPanelNav from "./UserPanelNav.vue";
 
 const preventDefault = (event) => {
   if (store.user.isLogged) {
