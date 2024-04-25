@@ -1,27 +1,35 @@
 <template>
-  <transition name="fade" mode="out-in">
-    <div
-      v-if="show"
-      class="fixed right-5 top-5 w-80 overflow-hidden rounded-lg"
-      :class="type"
-    >
-      <header
-        class="bg-inherit px-2 text-right text-2xl leading-6 brightness-95"
+  <teleport to="body">
+    <transition name="fade" mode="out-in">
+      <div
+        v-if="announcementsStore.announcements.show"
+        class="fixed right-5 top-5 w-80 overflow-hidden rounded-lg"
+        :class="announcementsStore.announcements.status"
       >
-        <span :ref="closeEl" class="">×</span>
-      </header>
-      <div class="p-3">
-        <slot></slot>
+        <header
+          class="bg-inherit px-2 text-right text-2xl leading-6 brightness-95"
+        >
+          <span @click="handleCloseAnnouncement">×</span>
+        </header>
+        <div class="p-3">
+          {{ announcementsStore.announcements.message }}
+        </div>
       </div>
-    </div>
-  </transition>
+    </transition>
+  </teleport>
 </template>
 
 <script setup>
-import { ref, defineProps } from "vue";
-defineProps(["show", "type"]);
+import { useAnnouncementsStore } from "@/stores/announcements.js";
+const announcementsStore = useAnnouncementsStore();
 
-const closeEl = ref();
+const handleCloseAnnouncement = () => {
+  announcementsStore.announcements = {
+    show: false,
+    status: "",
+    message: "",
+  };
+};
 </script>
 
 <style scoped>

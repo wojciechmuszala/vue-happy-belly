@@ -1,5 +1,4 @@
 <!-- 
-TODO : Move message div to new component
 TODO : Move base config to object, generate inputs by v-for
 TODO : Add animaiton to success and error messages
 -->

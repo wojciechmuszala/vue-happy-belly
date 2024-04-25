@@ -16,7 +16,10 @@
         label="Password"
         v-model="password"
       ></base-input>
-      <auth-announcements :errorMessage="errorMessage" v-show="errorMessage"></auth-announcements>
+      <auth-announcements
+        :errorMessage="errorMessage"
+        v-show="errorMessage"
+      ></auth-announcements>
       <base-button class="btn-primary">Sign In</base-button>
     </form>
     <p class="mt-2 text-center">

@@ -8,12 +8,11 @@
       :key="item.id"
       :is="item.link ? 'router-link' : 'div'"
       :to="item.link && item.link"
-      @click="item.eventFunction && item.eventFunction"
+      @click="item.eventFunction && item.eventFunction()"
     >
       <font-awesome-icon
         :icon="item.icon"
         class="hover:text-normal-orange ml-5 h-6 cursor-pointer transition-colors duration-300 md:h-5"
-        @click="icon.eventFunction && icon.eventFunction"
       />
     </component>
   </div>
@@ -21,12 +20,15 @@
 
 <script setup>
 import { defineProps } from "vue";
-const props = defineProps(["isNavbarExpanded", "handleSignOut"]);
+import { useUserAuth } from "@/composables/useUserAuth";
+
+defineProps(["isNavbarExpanded"]);
+const { handleSignOut } = useUserAuth({});
 const userPanelNav = [
   {
     id: "sign-out",
     icon: ["fas", "right-from-bracket"],
-    eventFunction: props.handleSignOut,
+    eventFunction: handleSignOut,
   },
   {
     id: "settings",

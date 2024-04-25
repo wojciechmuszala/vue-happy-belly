@@ -10,15 +10,17 @@ import { useInputValidation } from "@/composables/useInputValidation";
 
 import { auth } from "@/firebase";
 import { useUsersStore } from "@/stores/users.js";
+import { useAnnouncementsStore } from "@/stores/announcements.js";
 
 export const useUserAuth = ({ login, email, password, repeatPassword }) => {
-  const store = useUsersStore();
+  const userStore = useUsersStore();
+  const announcementsStore = useAnnouncementsStore();
   const router = useRouter();
   const errorMessage = ref();
 
   const clearUser = () => {
-    store.user = {
-      ...store.user,
+    userStore.user = {
+      ...userStore.user,
       isLogged: false,
       email: "",
       login: "",
@@ -121,15 +123,24 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
     try {
       await signInWithEmailAndPassword(auth, email.value, password.value);
 
-      store.user = {
-        ...store.user,
+      userStore.user = {
+        ...userStore.user,
         isLogged: true,
         email: email.value,
         login: email.value,
       };
+
+      announcementsStore.announcements = {
+        show: true,
+        status: "success",
+        message: "You have signed in!",
+      };
       router.push("/");
     } catch (error) {
-      console.log(error.code);
+      userStore.announcement = {
+        status: "error",
+        message: "You have not logged in.",
+      };
       switch (error.code) {
         case "auth/invalid-credential":
           errorMessage.value =
@@ -165,17 +176,28 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
     await signOut(auth);
     clearUser();
 
+    announcementsStore.announcements = {
+      show: true,
+      status: "success",
+      message: "You have signed out!",
+    };
+
     router.push("/");
   };
 
   const handleAutoSignIn = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        store.user = {
-          ...store.user,
+        userStore.user = {
+          ...userStore.user,
           isLogged: true,
           email: user.email,
           login: user.email,
+        };
+        announcementsStore.announcements = {
+          show: true,
+          status: "success",
+          message: "You have signed in!",
         };
       } else {
         clearUser();

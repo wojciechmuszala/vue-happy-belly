@@ -6,7 +6,6 @@
       <user-panel-nav
         v-if="store.user.isLogged"
         :is-navbar-expanded="isNavbarExpanded"
-        :handle-sign-out="handleSignOut"
       />
     </transition>
     <router-link
@@ -57,7 +56,6 @@
 <script setup>
 import { defineProps } from "vue";
 import { useUsersStore } from "@/stores/users.js";
-import { useUserAuth } from "@/composables/useUserAuth";
 import UserPanelNav from "./UserPanelNav.vue";
 
 const preventDefault = (event) => {
@@ -68,7 +66,6 @@ const preventDefault = (event) => {
 
 defineProps(["isNavbarExpanded"]);
 const store = useUsersStore();
-const { handleSignOut } = useUserAuth({});
 </script>
 
 <style scoped>
