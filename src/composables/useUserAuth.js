@@ -130,17 +130,16 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
         login: email.value,
       };
 
-      announcementsStore.announcements = {
-        show: true,
+      announcementsStore.addNewAnnouncement({
         status: "success",
         message: "You have signed in!",
-      };
+      });
       router.push("/");
     } catch (error) {
-      userStore.announcement = {
+      announcementsStore.addNewAnnouncement({
         status: "error",
         message: "You have not logged in.",
-      };
+      });
       switch (error.code) {
         case "auth/invalid-credential":
           errorMessage.value =
@@ -176,11 +175,11 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
     await signOut(auth);
     clearUser();
 
-    announcementsStore.announcements = {
-      show: true,
+    announcementsStore.addNewAnnouncement({
+      id: Math.random(),
       status: "success",
       message: "You have signed out!",
-    };
+    });
 
     router.push("/");
   };
@@ -194,11 +193,10 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
           email: user.email,
           login: user.email,
         };
-        announcementsStore.announcements = {
-          show: true,
+        announcementsStore.addNewAnnouncement({
           status: "success",
           message: "You have signed in!",
-        };
+        });
       } else {
         clearUser();
       }
