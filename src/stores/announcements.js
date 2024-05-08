@@ -16,7 +16,6 @@ export const useAnnouncementsStore = defineStore("announcements", () => {
 
   const deleteAnnouncement = (idToRemove) => {
     announcements.value = announcements.value.filter((item) => {
-      console.log(item.id, idToRemove);
 
       return item.id !== idToRemove;
     });

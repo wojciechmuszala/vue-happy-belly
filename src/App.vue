@@ -16,15 +16,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { useUserAuth } from "@/composables/useUserAuth";
+import { ref } from "vue";
+
 import TheNavigation from "./components/layout/TheNavigation";
 import MainContent from "./components/layout/MainContent";
 
-const { handleAutoSignIn } = useUserAuth({});
-onMounted(() => {
-  handleAutoSignIn();
-});
 const isNavbarExpanded = ref(false);
 const handleNavbarState = (navbarState) => {
   isNavbarExpanded.value = navbarState;

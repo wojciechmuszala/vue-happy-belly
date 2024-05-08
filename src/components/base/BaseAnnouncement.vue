@@ -32,6 +32,7 @@
 <script setup>
 import { useAnnouncementsStore } from "@/stores/announcements.js";
 const announcementsStore = useAnnouncementsStore();
+
 </script>
 
 <style scoped>

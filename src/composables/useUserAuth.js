@@ -3,7 +3,7 @@ import { useRouter } from "vue-router";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged,
+  // onAuthStateChanged,
   signOut,
 } from "firebase/auth";
 import { useInputValidation } from "@/composables/useInputValidation";
@@ -17,6 +17,7 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
   const announcementsStore = useAnnouncementsStore();
   const router = useRouter();
   const errorMessage = ref();
+  const isSigningInWithEmail = ref(false);
 
   const clearUser = () => {
     userStore.user = {
@@ -82,6 +83,7 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
 
   const handleSignUpWithEmail = async () => {
     errorMessage.value = "";
+    isSigningInWithEmail.value = true;
     if (
       checkLogin() &&
       checkEmail() &&
@@ -90,7 +92,6 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
     ) {
       try {
         await createUserWithEmailAndPassword(auth, email.value, password.value);
-        console.log("Success!");
         router.push("/");
       } catch (error) {
         switch (error.code) {
@@ -122,7 +123,6 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
   const handleSignInWithEmail = async () => {
     try {
       await signInWithEmailAndPassword(auth, email.value, password.value);
-
       userStore.user = {
         ...userStore.user,
         isLogged: true,
@@ -184,24 +184,24 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
     router.push("/");
   };
 
-  const handleAutoSignIn = () => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        userStore.user = {
-          ...userStore.user,
-          isLogged: true,
-          email: user.email,
-          login: user.email,
-        };
-        announcementsStore.addNewAnnouncement({
-          status: "success",
-          message: "You have signed in!",
-        });
-      } else {
-        clearUser();
-      }
-    });
-  };
+  // const handleAutoSignIn = () => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       userStore.user = {
+  //         ...userStore.user,
+  //         isLogged: true,
+  //         email: user.email,
+  //         login: user.email,
+  //       };
+  //       announcementsStore.addNewAnnouncement({
+  //         status: "success",
+  //         message: "You have signed in automatically!",
+  //       });
+  //     } else {
+  //       clearUser();
+  //     }
+  //   });
+  // };
 
   return {
     conditionsForRegistration,
@@ -211,7 +211,7 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
     checkPasswordMatch,
     handleSignUpWithEmail,
     handleSignInWithEmail,
-    handleAutoSignIn,
+    // handleAutoSignIn,
     handleSignOut,
     errorMessage,
   };
