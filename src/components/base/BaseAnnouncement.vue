@@ -32,7 +32,6 @@
 <script setup>
 import { useAnnouncementsStore } from "@/stores/announcements.js";
 const announcementsStore = useAnnouncementsStore();
-
 </script>
 
 <style scoped>
@@ -50,11 +49,21 @@ const announcementsStore = useAnnouncementsStore();
 
 .fade-enter-from,
 .fade-leave-to {
-  @apply opacity-0;
+  @apply -translate-y-3 opacity-0;
+}
+.fade-enter-to,
+.fade-leave-from {
+  @apply translate-y-0 opacity-100;
 }
 
-.fade-enter-active,
+.fade-enter-active {
+  @apply transition-all duration-300 ease-in;
+}
 .fade-leave-active {
-  @apply transition-opacity duration-500 ease-in;
+  @apply absolute transition-all duration-300 ease-in;
+}
+
+.fade-move {
+  @apply transition-all duration-300 ease-in;
 }
 </style>
