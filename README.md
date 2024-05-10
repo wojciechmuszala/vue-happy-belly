@@ -23,7 +23,7 @@ The application allows users to plan their meals for the week according to their
 
 To run the project locally, follow these steps:
 
-🔄 Clone the repository: `git clone https://github.com/your_repository`<br>
+🔄 Clone the repository: `git clone https://github.com/wojciechmuszala/vue-happy-belly.git`<br>
 📁 Navigate to the project directory: `cd vue-happy-belly`<br>
 ⚙️ Install dependencies: `npm install`<br>
 🚀 Run the development server: `npm run serve`<br>
