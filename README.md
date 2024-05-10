@@ -1,7 +1,10 @@
+
+<img src="src/assets/images/happy-belly-logo.svg" alt="Happy belly Logo" width="200">
+
 ## Project Description
 🍊 HappyBelly.pl is an innovative application based on Vue.js and Tailwind CSS technologies, aimed at facilitating diet management and meal planning.
 
-## Description
+## App Description
 The application allows users to plan their meals for the week according to their dietary preferences. Users can choose the number of meals, dietary preferences (e.g., vegetarian, gluten-free), and other preferences, and then generate a weekly meal schedule with just one click.
 
 ## Features
