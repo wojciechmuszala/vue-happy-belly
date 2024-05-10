@@ -7,9 +7,9 @@ The application allows users to plan their meals for the week according to their
 
 ## Features
 📅 Meal planning for the week<br>
-🥦 Ability to choose dietary preferencesh<br>
-🎲 Meal randomization based on preferences<br>
-🍽️ Customization of the number of meals 
+🥦 Ability to choose dietary preferences<br>
+🎲 Meals raffle for whole week based on your preferences<br>
+🍽️ Customization of the number of meals<br>
 💻 User-friendly interface
 
 ## Project Goal
