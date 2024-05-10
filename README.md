@@ -1,4 +1,3 @@
-
 ## Project Description
 🍊 HappyBelly.pl is an innovative application based on Vue.js and Tailwind CSS technologies, aimed at facilitating diet management and meal planning.
 
@@ -21,7 +20,7 @@ The application allows users to plan their meals for the week according to their
 
 ## Installation
 
-To run the project locally, follow these steps:
+To run the project locally, follow these steps:<br>
 
 🔄 Clone the repository: `git clone https://github.com/wojciechmuszala/vue-happy-belly.git`<br>
 📁 Navigate to the project directory: `cd vue-happy-belly`<br>
