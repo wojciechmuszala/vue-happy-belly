@@ -1,5 +1,6 @@
-
+<p align="center">
 <img src="src/assets/images/happy-belly-logo.svg" alt="Happy belly Logo" width="200">
+</p>
 
 ## Project Description
 🍊 HappyBelly.pl is an innovative application based on Vue.js and Tailwind CSS technologies, aimed at facilitating diet management and meal planning.
