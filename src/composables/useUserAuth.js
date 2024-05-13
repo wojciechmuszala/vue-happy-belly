@@ -122,12 +122,25 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
 
   const handleSignInWithEmail = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email.value, password.value);
+      const signInData = await signInWithEmailAndPassword(
+        auth,
+        email.value,
+        password.value,
+      );
+
+      // TODO - Set userData in Firebase by userToken/userId
+
+      localStorage.setItem("userToken", signInData._tokenResponse.idToken);
+      localStorage.setItem("userId", signInData._tokenResponse.localId);
+
       userStore.user = {
         ...userStore.user,
         isLogged: true,
-        email: email.value,
-        login: email.value,
+        email: signInData._tokenResponse.email,
+        login: signInData._tokenResponse.email,
+        token: signInData._tokenResponse.idToken,
+        userId: signInData._tokenResponse.localId,
+        expirationTime: signInData._tokenResponse.localId.expiresIn,
       };
 
       announcementsStore.addNewAnnouncement({
@@ -171,6 +184,24 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
     }
   };
 
+  const handleAutoSignIn = () => {
+    const userToken = localStorage.getItem("userToken");
+    const userId = localStorage.getItem("userId");
+
+    if (userToken && userId) {
+      // TODO - Get userData from Firebase by userToken/userId
+      userStore.user = {
+        ...userStore.user,
+        isLogged: true,
+        // email: /* data from firebase */,
+        // login: /* data from firebase */,
+        // token: /* data from firebase */,
+        // userId: /* data from firebase */,
+        // expirationTime: /* data from firebase */,
+      };
+    }
+  };
+
   const handleSignOut = async () => {
     await signOut(auth);
     clearUser();
@@ -184,25 +215,6 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
     router.push("/");
   };
 
-  // const handleAutoSignIn = () => {
-  //   onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       userStore.user = {
-  //         ...userStore.user,
-  //         isLogged: true,
-  //         email: user.email,
-  //         login: user.email,
-  //       };
-  //       announcementsStore.addNewAnnouncement({
-  //         status: "success",
-  //         message: "You have signed in automatically!",
-  //       });
-  //     } else {
-  //       clearUser();
-  //     }
-  //   });
-  // };
-
   return {
     conditionsForRegistration,
     checkLogin,
@@ -211,7 +223,7 @@ export const useUserAuth = ({ login, email, password, repeatPassword }) => {
     checkPasswordMatch,
     handleSignUpWithEmail,
     handleSignInWithEmail,
-    // handleAutoSignIn,
+    handleAutoSignIn,
     handleSignOut,
     errorMessage,
   };
