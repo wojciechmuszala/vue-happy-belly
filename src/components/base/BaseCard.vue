@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-xl p-5">
+  <div class="rounded-xl p-5" :class="`card-${type}`">
     <slot></slot>
   </div>
 </template>

@@ -1,5 +1,7 @@
 <template>
-  <main class="min-h-screen transition-all duration-300 ease-in-out">
+  <main
+    class="min-h-screen px-2 transition-all duration-300 ease-in-out md:px-4"
+  >
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
         <component :is="Component" class="py-20"></component>

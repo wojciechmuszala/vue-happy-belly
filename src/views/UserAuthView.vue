@@ -1,6 +1,6 @@
 <template>
   <div class="flex min-h-screen w-full justify-center px-3">
-    <base-card class="card-quternary h-max max-w-screen-sm md:w-1/2">
+    <base-card type="quternary" class="h-max max-w-screen-sm md:w-1/2">
       <sign-in :showSignUp="showSignUp" />
       <transition name="expand">
         <sign-up v-show="!isUserRegistered" />

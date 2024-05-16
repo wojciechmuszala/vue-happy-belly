@@ -4,9 +4,7 @@
   >
     <base-announcement />
     <the-navigation @get-navbar-state="handleNavbarState"></the-navigation>
-    <main-content>
-      :class="isNavbarExpanded ? 'md:ml-60' : 'md:ml-24'" ></main-content
-    >
+    <main-content :class="isNavbarExpanded ? 'md:ml-60' : 'md:ml-24'" />
   </div>
 </template>
 
