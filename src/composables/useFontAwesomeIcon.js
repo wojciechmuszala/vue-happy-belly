@@ -16,6 +16,9 @@ import {
   faHouse,
   faBook,
   faPlateWheat,
+
+  // Utility:
+  faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const useFontAwesomeIcon = () => {
@@ -35,6 +38,9 @@ export const useFontAwesomeIcon = () => {
     faHouse,
     faBook,
     faPlateWheat,
+
+    // Utility:
+    faMagnifyingGlass,
   );
 
   return {

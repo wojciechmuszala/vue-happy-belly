@@ -17,7 +17,7 @@ defineProps(["type"]);
   @apply bg-normal-orange text-dark-blue;
 }
 .card-tertiary {
-  @apply bg-gray-100 text-dark-blue;
+  @apply bg-white border-gray-100 border text-dark-blue;
 }
 .card-quternary {
   @apply bg-white border border-dark-blue text-dark-blue;

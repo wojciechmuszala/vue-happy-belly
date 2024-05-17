@@ -25,6 +25,11 @@
       ]"
       >{{ label }}</label
     >
+    <font-awesome-icon
+      v-if="icon"
+      :icon="icon"
+      class="absolute right-4 top-1/2 -translate-y-1/2"
+    />
   </div>
 </template>
 
@@ -42,6 +47,7 @@ const props = defineProps([
   "validateFunction",
   "onInput",
   "onBlur",
+  "icon",
 ]);
 const emit = defineEmits(["update:modelValue"]);
 

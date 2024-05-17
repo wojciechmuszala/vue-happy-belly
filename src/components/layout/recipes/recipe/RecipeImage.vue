@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex max-h-56 max-w-fit items-center justify-center overflow-hidden rounded-lg mb-3"
+    class="flex max-h-56 max-w-fit items-center justify-center overflow-hidden rounded-md mb-3"
   >
     <img
       v-for="image in images"
