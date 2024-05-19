@@ -1,5 +1,5 @@
 <template>
-  <div class="group relative">
+  <div v-if="type === 'text'" class="group relative">
     <input
       @input="handleInput($event)"
       @blur="handleBlur($event)"
@@ -30,6 +30,16 @@
       :icon="icon"
       class="absolute right-4 top-1/2 -translate-y-1/2"
     />
+  </div>
+  <div v-else-if="type === 'file'">
+    <input :id="id" :type="type" class="hidden" />
+    <label
+      :for="id"
+      class="bg-white flex items-center gap-3 rounded-full border border-dark-blue px-5 py-3 transition-colors duration-300 hover:bg-dark-blue hover:text-light-yellow"
+    >
+      Upload
+      <font-awesome-icon :icon="['fas', 'upload']" />
+    </label>
   </div>
 </template>
 

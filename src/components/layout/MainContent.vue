@@ -4,7 +4,7 @@
   >
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
-        <component :is="Component" class="py-20"></component>
+        <component :is="Component" class="py-5"></component>
       </transition>
     </router-view>
   </main>

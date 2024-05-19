@@ -19,6 +19,7 @@ import {
 
   // Utility:
   faMagnifyingGlass,
+  faUpload,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const useFontAwesomeIcon = () => {
@@ -41,6 +42,7 @@ export const useFontAwesomeIcon = () => {
 
     // Utility:
     faMagnifyingGlass,
+    faUpload
   );
 
   return {
