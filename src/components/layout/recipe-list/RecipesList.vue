@@ -5,10 +5,10 @@
 </template>
 
 <script setup>
-import RecipeItem from "./recipe/RecipeItem";
+import RecipeItem from "./recipe-item/RecipeItem";
 const recipes = [
   {
-    id: Math.random(),
+    id: 1,
     name: "Pasta with sauce",
     images: [require("@/assets/images/dummy_recipes/dummy-recipe-1.jpg")],
     tags: [
@@ -18,7 +18,7 @@ const recipes = [
     ],
   },
   {
-    id: Math.random(),
+    id: 2,
     name: "Sandwitch with chicken",
     images: [require("@/assets/images/dummy_recipes/dummy-recipe-2.jpg")],
     tags: [
@@ -28,7 +28,7 @@ const recipes = [
     ],
   },
   {
-    id: Math.random(),
+    id: 3,
     name: "Burger with beetroot",
     images: [require("@/assets/images/dummy_recipes/dummy-recipe-3.jpg")],
     tags: [
@@ -38,7 +38,7 @@ const recipes = [
     ],
   },
   {
-    id: Math.random(),
+    id: 4,
     name: "Sandwitch with ",
     images: [require("@/assets/images/dummy_recipes/dummy-recipe-4.jpg")],
     tags: [
@@ -48,7 +48,7 @@ const recipes = [
     ],
   },
   {
-    id: Math.random(),
+    id: 5,
     name: "Sandwitch with gucamole",
     images: [require("@/assets/images/dummy_recipes/dummy-recipe-5.jpg")],
     tags: [
@@ -58,7 +58,7 @@ const recipes = [
     ],
   },
   {
-    id: Math.random(),
+    id: 6,
     name: "Sandwitch with gucamole",
     images: [require("@/assets/images/dummy_recipes/dummy-recipe-5.jpg")],
     tags: [
@@ -68,7 +68,7 @@ const recipes = [
     ],
   },
   {
-    id: Math.random(),
+    id: 7,
     name: "Sandwitch with gucamole",
     images: [require("@/assets/images/dummy_recipes/dummy-recipe-5.jpg")],
     tags: [
@@ -78,7 +78,7 @@ const recipes = [
     ],
   },
   {
-    id: Math.random(),
+    id: 8,
     name: "Sandwitch with gucamole",
     images: [require("@/assets/images/dummy_recipes/dummy-recipe-5.jpg")],
     tags: [

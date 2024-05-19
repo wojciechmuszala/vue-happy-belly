@@ -28,7 +28,7 @@
           <span class="ml-4 truncate">{{ menuItem.title }}</span>
         </router-link>
       </nav>
-      <div class="md:flex w-full md:items-end">
+      <div class="w-full md:flex md:items-end">
         <user-panel :is-navbar-expanded="isNavbarExpanded" />
         <expand-button
           @click="toggleNavbar"
@@ -48,18 +48,23 @@ import UserPanel from "../layout/navigation/UserPanel";
 const menuList = [
   {
     title: "Home",
-    link: "/",
+    link: { name: "home" },
     faIcon: ["fas", "house"],
   },
   {
     title: "Recipes",
-    link: "/recipes",
+    link: { name: "recipeList" },
     faIcon: ["fas", "book"],
   },
   {
     title: "Meal planner",
-    link: "/meal-planner",
+    link: { name: "mealPlanner" },
     faIcon: ["fas", "plate-wheat"],
+  },
+  {
+    title: "Test Field",
+    link: { name: "test" },
+    faIcon: ["fas", "gear"],
   },
 ];
 

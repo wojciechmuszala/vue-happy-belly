@@ -1,5 +1,5 @@
 <template>
-  <div v-if="type === 'text'" class="group relative">
+  <div v-if="type === 'text' || type === 'password'" class="group relative">
     <input
       @input="handleInput($event)"
       @blur="handleBlur($event)"

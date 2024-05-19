@@ -1,19 +1,23 @@
-import { createMemoryHistory, createRouter } from "vue-router";
+import { createWebHistory, createRouter } from "vue-router";
 
 import HomeView from "../views/HomeView.vue";
 import UserAuthView from "../views/UserAuthView.vue";
 import RecipesListView from "../views/RecipesListView.vue";
+import RecipeCardView from "../views/RecipeCardView.vue";
 import MealPlannerView from "../views/MealPlannerView.vue";
+import TestFieldView from "../views/TestFieldView.vue";
 
 const routes = [
-  { path: "/", component: HomeView },
-  { path: "/user-auth", component: UserAuthView },
-  { path: "/recipes", component: RecipesListView },
-  { path: "/meal-planner", component: MealPlannerView },
+  { path: "/", name: "home", component: HomeView },
+  { path: "/test", name: "test", component: TestFieldView },
+  { path: "/user-auth", name: "userAuth", component: UserAuthView },
+  { path: "/recipe-list", name: "recipeList", component: RecipesListView },
+  { path: "/recipe-list/:id", name: "recipeCard", component: RecipeCardView },
+  { path: "/meal-planner", name: "mealPlanner", component: MealPlannerView },
 ];
 
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes,
 });
 

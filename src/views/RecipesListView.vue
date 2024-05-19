@@ -7,8 +7,8 @@
 </template>
 
 <script setup>
-import RecipesList from "@/components/layout/recipes/RecipesList.vue";
-import RecipesNavigation from "@/components/layout/recipes/RecipesNavigation.vue";
+import RecipesList from "@/components/layout/recipe-list/RecipesList.vue";
+import RecipesNavigation from "@/components/layout/recipe-list/RecipesNavigation.vue";
 </script>
 
 <style lang="scss" scoped></style>

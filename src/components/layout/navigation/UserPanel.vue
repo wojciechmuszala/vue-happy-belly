@@ -9,10 +9,12 @@
       />
     </transition>
     <router-link
-      to="/user-auth"
+      :to="{ name: 'userAuth' }"
       class="flex items-center gap-3 rounded-full px-2 py-2 transition-all duration-300 md:w-full md:gap-4"
       :class="
-        usersStore.user.isLogged ? 'cursor-default' : 'hover:bg-dark-blue-lighter'
+        usersStore.user.isLogged
+          ? 'cursor-default'
+          : 'hover:bg-dark-blue-lighter'
       "
       @click="preventDefault($event)"
     >
