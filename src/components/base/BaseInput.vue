@@ -31,6 +31,51 @@
       class="absolute right-4 top-1/2 -translate-y-1/2"
     />
   </div>
+  <details
+    ref="detailsElement"
+    v-else-if="type === 'select'"
+    class="min-w-60 rounded-lg border border-dark-blue [&_summary:after]:content-['▼'] [&_summary:after]:open:content-['▲']"
+  >
+    <summary
+      class="relative z-10 flex gap-3 after:absolute after:top-1/2 after:flex after:h-full after:w-full after:-translate-y-1/2 after:items-center after:justify-end after:pr-3 after:text-right"
+    >
+      <input
+        type="radio"
+        :name="id"
+        id="default"
+        :title="defaultOption"
+        :value="modelValue"
+        class="hidden w-full appearance-none p-3 pr-9 font-semibold before:content-[attr(title)] checked:inline-block"
+        checked="true"
+      />
+      <input
+        v-for="option in options"
+        :key="option"
+        type="radio"
+        :name="id"
+        :id="option"
+        :title="option"
+        :value="modelValue"
+        class="hidden w-full appearance-none p-3 pr-9 font-semibold before:content-[attr(title)] checked:inline-block"
+      />
+    </summary>
+    <ul class="[&_li:first-child]:border-t [&_li:last-child]:border-none">
+      <li
+        class="hover:bg-gray-100 border-b border-dark-blue"
+        @click="handleCloseSelect"
+      >
+        <label for="default" class="block px-3 py-1">{{ defaultOption }}</label>
+      </li>
+      <li
+        v-for="option in options"
+        :key="option"
+        @click="handleCloseSelect"
+        class="hover:bg-gray-100 border-b border-b-dark-blue"
+      >
+        <label :for="option" class="block px-3 py-1"> {{ option }}</label>
+      </li>
+    </ul>
+  </details>
   <div v-else-if="type === 'file'">
     <input :id="id" :type="type" class="hidden" />
     <label
@@ -50,6 +95,7 @@ const props = defineProps([
   "id",
   "label",
   "type",
+  "icon",
   "inputClass",
   "labelClass",
   "modelValue",
@@ -57,7 +103,8 @@ const props = defineProps([
   "validateFunction",
   "onInput",
   "onBlur",
-  "icon",
+  "options",
+  "defaultOption",
 ]);
 const emit = defineEmits(["update:modelValue"]);
 
@@ -85,6 +132,10 @@ const handleInput = (event) => {
 };
 const handleBlur = (event) => {
   props.onBlur != undefined && emitInputValue(event);
+};
+const detailsElement = ref();
+const handleCloseSelect = () => {
+  detailsElement.value.removeAttribute("open");
 };
 </script>
 
