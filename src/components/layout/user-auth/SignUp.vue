@@ -46,7 +46,7 @@ TODO : Add animaiton to success and error messages
         :conditionsForRegistration="conditionsForRegistration"
       ></auth-announcements>
 
-      <base-button class="btn-primary">Sign Up</base-button>
+      <base-button type="primary">Sign Up</base-button>
     </form>
   </div>
 </template>

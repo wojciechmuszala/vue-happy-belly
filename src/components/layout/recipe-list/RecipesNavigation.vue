@@ -1,16 +1,23 @@
 <template>
   <div class="mb-5 flex justify-between">
-    <base-input
-      :icon="['fas', 'magnifying-glass']"
-      id="search"
-      type="text"
-      label="Search"
-      v-model="xxx"
-    ></base-input>
-    <div class="flex">Filters</div>
+    <div class="flex items-center gap-3">
+      <recipe-search />
+      <recipe-tag-filter />
+    </div>
+    <base-button
+      mode="router-link"
+      :to="{ name: 'recipeAdd' }"
+      type="tertiary"
+      :icon="['fas', 'plus']"
+    >
+      Add recipe
+    </base-button>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import RecipeSearch from "./navigation/RecipeSearch.vue";
+import RecipeTagFilter from "./navigation/RecipeTagFilter.vue";
+</script>
 
 <style scoped></style>

@@ -16,10 +16,12 @@ import {
   faHouse,
   faBook,
   faPlateWheat,
+  faBroom,
 
   // Utility:
   faMagnifyingGlass,
   faUpload,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const useFontAwesomeIcon = () => {
@@ -39,10 +41,12 @@ export const useFontAwesomeIcon = () => {
     faHouse,
     faBook,
     faPlateWheat,
+    faBroom,
 
     // Utility:
     faMagnifyingGlass,
-    faUpload
+    faUpload,
+    faPlus,
   );
 
   return {

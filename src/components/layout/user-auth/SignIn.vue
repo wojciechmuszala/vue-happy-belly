@@ -20,7 +20,7 @@
         :errorMessage="errorMessage"
         v-show="errorMessage"
       ></auth-announcements>
-      <base-button class="btn-primary">Sign In</base-button>
+      <base-button type="primary">Sign In</base-button>
     </form>
     <p class="mt-2 text-center">
       Don't have an account yet?

@@ -10,7 +10,7 @@
     </transition>
     <router-link
       :to="{ name: 'userAuth' }"
-      class="flex items-center gap-3 rounded-full px-2 py-2 transition-all duration-300 md:w-full md:gap-4"
+      class="flex items-center gap-3 rounded-full px-2 py-2 transition-all duration-300 md:w-full md:gap-4 active:scale-95"
       :class="
         usersStore.user.isLogged
           ? 'cursor-default'
