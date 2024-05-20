@@ -17,7 +17,7 @@
           v-for="menuItem in menuList"
           :key="menuItem"
           :to="menuItem.link"
-          class="hover:bg-dark-blue-lighter text-l flex items-center rounded-full px-4 py-2 transition-all duration-300"
+          class="hover:bg-dark-blue-lighter text-l flex items-center rounded-full px-4 py-2 transition-all duration-300 active:scale-95"
           @click="toggleMenu"
         >
           <font-awesome-icon
@@ -60,6 +60,11 @@ const menuList = [
     title: "Meal planner",
     link: { name: "mealPlanner" },
     faIcon: ["fas", "plate-wheat"],
+  },
+  {
+    title: "Fridge cleaner",
+    link: { name: "fridgeCleaner" },
+    faIcon: ["fas", "broom"],
   },
   {
     title: "Test Field",
