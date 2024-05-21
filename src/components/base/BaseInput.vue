@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="type === 'text' || type === 'password'"
+    v-if="type === 'text' || type === 'password' || type === 'number'"
     class="group relative w-full"
     v-bind="dirAttribute"
   >
@@ -15,15 +15,16 @@
         inputClass,
         {
           'border-red-500 bg-red-50': validateFunction && !checkIsInputValid(),
-          'rounded-full': !buttonPlacement,
-          'rounded-s-full border-r-0': buttonPlacement === 'right',
-          'rounded-s-full border-l-0': buttonPlacement === 'left',
+          'rounded-full': !noRounded,
+          'rounded-none border-r-0': noRounded === 'both',
+          'rounded-s-full border-r-0': noRounded === 'right',
+          'rounded-s-full border-l-0': noRounded === 'left',
         },
       ]"
     />
     <label
       :for="id"
-      class="peer-focus:bg-white peer=focus:rounded absolute inset-y-1/2 left-5 h-max -translate-y-1/2 transition-all duration-200 peer-focus:-top-1 peer-focus:left-5 peer-focus:h-max peer-focus:px-1 peer-focus:py-0 peer-focus:text-xs peer-focus:text-dark-blue"
+      class="peer-focus:bg-white peer=focus:rounded pointer-events-none absolute inset-y-1/2 left-5 h-max -translate-y-1/2 transition-all duration-200 peer-focus:-top-1 peer-focus:left-5 peer-focus:h-max peer-focus:px-1 peer-focus:py-0 peer-focus:text-xs peer-focus:text-dark-blue"
       :class="[
         labelClass,
         modelValue
@@ -99,6 +100,7 @@
 import { ref, defineProps, defineEmits } from "vue";
 
 // TODO: Add props types and required info
+// TODO: Handle type number (convert to type number)
 const props = defineProps([
   "id",
   "label",
@@ -113,14 +115,14 @@ const props = defineProps([
   "onBlur",
   "options",
   "defaultOption",
-  "buttonPlacement",
+  "noRounded",
 ]);
 
 const dirAttribute = (() => {
-  console.log(props.buttonPlacement);
-  if (props.buttonPlacement === "right") {
+  console.log(props.noRounded);
+  if (props.noRounded === "right") {
     return { dir: "ltr" };
-  } else if (props.buttonPlacement === "left") {
+  } else if (props.noRounded === "left") {
     return { dir: "rtl" };
   } else {
     return null;

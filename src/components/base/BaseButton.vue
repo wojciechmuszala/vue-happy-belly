@@ -5,7 +5,11 @@
       :class="[
         `btn-${type}`,
         icon ? 'justify-between' : 'justify-center',
-        inputPlacement ? 'rounded-s-full' : 'rounded-full',
+        {
+          'rounded-full': !noRounded,
+          'rounded-none': noRounded === 'both',
+          'rounded-s-full': noRounded === 'right' || noRounded === 'left',
+        },
       ]"
     >
       <slot></slot>
@@ -18,7 +22,7 @@
 import { defineProps } from "vue";
 
 // TODO: Add props types and required info
-const props = defineProps(["mode", "type", "icon", "inputPlacement"]);
+const props = defineProps(["mode", "type", "icon", "noRounded"]);
 
 const handleMode = (() => {
   if (props.mode === "router-link") {
@@ -31,9 +35,9 @@ const handleMode = (() => {
 })();
 
 const dirAttribute = (() => {
-  if (props.inputPlacement === "right") {
+  if (props.noRounded === "right") {
     return { dir: "ltr" };
-  } else if (props.inputPlacement === "left") {
+  } else if (props.noRounded === "left") {
     return { dir: "rtl" };
   } else {
     return null;

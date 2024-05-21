@@ -26,13 +26,20 @@
             onInput
             type="text"
             label="Add ingredient"
-            button-placement="right"
-            v-model="ingredient"
+            no-rounded="right"
+            v-model="ingredientName"
+          />
+          <base-input
+            onInput
+            type="number"
+            label="Quantity"
+            no-rounded="both"
+            v-model="ingredientQuantity"
           />
           <base-button
             type="primary"
             :icon="['fas', 'plus']"
-            input-placement="left"
+            no-rounded="left"
           />
         </form>
         <ul v-if="ingredientList.length > 0">
@@ -47,12 +54,15 @@
 
 <script setup>
 import { ref } from "vue";
+
+// TODO: Change igredient to one reactive object
 const recipeName = ref("");
-const ingredient = ref("");
+const ingredientName = ref("");
+const ingredientQuantity = ref("");
 const ingredientList = ref([]);
 const addIngredient = () => {
-  if (!ingredientList.value.includes(ingredient.value)) {
-    ingredientList.value.push(ingredient.value);
+  if (!ingredientList.value.includes(ingredientName.value)) {
+    ingredientList.value.push([ingredientName.value, ingredientQuantity.value]);
   } else {
     // TODO: Add validation fct and info
     console.log("Already on list!");
