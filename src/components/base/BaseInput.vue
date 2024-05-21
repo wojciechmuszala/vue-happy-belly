@@ -1,16 +1,22 @@
 <template>
-  <div v-if="type === 'text' || type === 'password'" class="group relative">
+  <div
+    v-if="type === 'text' || type === 'password'"
+    class="group relative"
+    v-bind="dirAttribute"
+  >
     <input
       @input="handleInput($event)"
       @blur="handleBlur($event)"
       :id="id"
       :type="type"
       :value="modelValue"
-      class="bg-white peer w-full rounded-full border border-dark-blue px-5 py-2.5 text-dark-blue focus:outline-none"
+      class="bg-white peer w-full border border-dark-blue px-5 py-2.5 text-dark-blue focus:outline-none"
       :class="[
         inputClass,
         {
           'border-red-500 bg-red-50': validateFunction && !checkIsInputValid(),
+          'rounded-s-full border-r-0': buttonPlacement === 'right',
+          'rounded-s-full border-l-0': buttonPlacement === 'left',
         },
       ]"
     />
@@ -105,7 +111,20 @@ const props = defineProps([
   "onBlur",
   "options",
   "defaultOption",
+  "buttonPlacement",
 ]);
+
+const dirAttribute = (() => {
+  console.log(props.buttonPlacement);
+  if (props.buttonPlacement === "right") {
+    return { dir: "ltr" };
+  } else if (props.buttonPlacement === "left") {
+    return { dir: "rtl" };
+  } else {
+    return null;
+  }
+})();
+
 const emit = defineEmits(["update:modelValue"]);
 
 const firstCharacterTyped = ref(false);

@@ -4,10 +4,14 @@
     id="search"
     type="text"
     label="Search"
-    v-model="xxx"
+    v-model="value"
   ></base-input>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+
+const value = ref();
+</script>
 
 <style lang="scss" scoped></style>

@@ -1,32 +1,59 @@
 <template>
-  <a
-    v-if="mode === 'link'"
-    class="flex items-center gap-3 rounded-full px-4 py-2.5 active:scale-95"
-    :class="[`btn-${type}`, icon ? 'justify-between' : 'justify-center']"
-  >
-    <slot></slot>
-    <font-awesome-icon v-if="icon" :icon="icon" />
+  <a v-if="mode === 'link'" v-bind="dirAttribute">
+    <div
+      class="flex h-full items-center gap-3 px-4 py-2.5 active:scale-95"
+      :class="[
+        `btn-${type}`,
+        icon ? 'justify-between' : 'justify-center',
+        inputPlacement ? 'rounded-s-full' : 'rounded-full',
+      ]"
+    >
+      <slot></slot>
+      <font-awesome-icon v-if="icon" :icon="icon" />
+    </div>
   </a>
-  <router-link
-    v-else-if="mode === 'router-link'"
-    class="flex items-center gap-3 rounded-full px-4 py-2.5 active:scale-95"
-    :class="[`btn-${type}`, icon ? 'justify-between' : 'justify-center']"
-  >
-    <slot />
+  <router-link v-else-if="mode === 'router-link'" v-bind="dirAttribute">
+    <div
+      class="flex h-full items-center gap-3 px-4 py-2.5 active:scale-95"
+      :class="[
+        `btn-${type}`,
+        icon ? 'justify-between' : 'justify-center',
+        inputPlacement ? 'rounded-s-full' : 'rounded-full',
+      ]"
+    >
+      <slot />
+      <font-awesome-icon v-if="icon" :icon="icon" />
+    </div>
   </router-link>
-  <button
-    v-else
-    class="flex items-center gap-3 rounded-full px-4 py-2.5 active:scale-95"
-    :class="[`btn-${type}`, icon ? 'justify-between' : 'justify-center']"
-  >
-    <slot />
-    <font-awesome-icon v-if="icon" :icon="icon" />
+  <button v-else v-bind="dirAttribute">
+    <div
+      class="flex h-full items-center gap-3 px-4 py-2.5 active:scale-95"
+      :class="[
+        `btn-${type}`,
+        icon ? 'justify-between' : 'justify-center',
+        inputPlacement ? 'rounded-s-full' : 'rounded-full',
+      ]"
+    >
+      <slot />
+      <font-awesome-icon v-if="icon" :icon="icon" />
+    </div>
   </button>
 </template>
 
 <script setup>
 import { defineProps } from "vue";
-defineProps(["mode", "type", "icon"]);
+const props = defineProps(["mode", "type", "icon", "inputPlacement"]);
+
+const dirAttribute = (() => {
+  console.log(props.inputPlacement);
+  if (props.inputPlacement === "right") {
+    return { dir: "ltr" };
+  } else if (props.inputPlacement === "left") {
+    return { dir: "rtl" };
+  } else {
+    return null;
+  }
+})();
 </script>
 
 <style scoped>
