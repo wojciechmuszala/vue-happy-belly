@@ -1,5 +1,5 @@
 <template>
-  <component :is="handleMode" v-bind="dirAttribute">
+  <component :is="handleMode" v-bind="dirAttribute" class="cursor-pointer">
     <div
       class="flex h-full items-center gap-3 px-4 py-2.5 active:scale-95"
       :class="[
@@ -31,7 +31,6 @@ const handleMode = (() => {
 })();
 
 const dirAttribute = (() => {
-  console.log(props.inputPlacement);
   if (props.inputPlacement === "right") {
     return { dir: "ltr" };
   } else if (props.inputPlacement === "left") {
