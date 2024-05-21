@@ -19,7 +19,7 @@ defineProps(["type"]);
 .card-tertiary {
   @apply bg-white border-gray-100 border text-dark-blue;
 }
-.card-quternary {
+.card-quaternary {
   @apply bg-white border border-dark-blue text-dark-blue;
 }
 </style>

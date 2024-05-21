@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="type === 'text' || type === 'password'"
-    class="group relative"
+    class="group relative w-full"
     v-bind="dirAttribute"
   >
     <input
