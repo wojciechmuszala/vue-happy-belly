@@ -15,6 +15,7 @@
         inputClass,
         {
           'border-red-500 bg-red-50': validateFunction && !checkIsInputValid(),
+          'rounded-full': !buttonPlacement,
           'rounded-s-full border-r-0': buttonPlacement === 'right',
           'rounded-s-full border-l-0': buttonPlacement === 'left',
         },
@@ -97,6 +98,7 @@
 <script setup>
 import { ref, defineProps, defineEmits } from "vue";
 
+// TODO: Add props types and required info
 const props = defineProps([
   "id",
   "label",

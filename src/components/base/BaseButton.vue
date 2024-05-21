@@ -1,5 +1,5 @@
 <template>
-  <a v-if="mode === 'link'" v-bind="dirAttribute">
+  <component :is="handleMode" v-bind="dirAttribute">
     <div
       class="flex h-full items-center gap-3 px-4 py-2.5 active:scale-95"
       :class="[
@@ -11,38 +11,24 @@
       <slot></slot>
       <font-awesome-icon v-if="icon" :icon="icon" />
     </div>
-  </a>
-  <router-link v-else-if="mode === 'router-link'" v-bind="dirAttribute">
-    <div
-      class="flex h-full items-center gap-3 px-4 py-2.5 active:scale-95"
-      :class="[
-        `btn-${type}`,
-        icon ? 'justify-between' : 'justify-center',
-        inputPlacement ? 'rounded-s-full' : 'rounded-full',
-      ]"
-    >
-      <slot />
-      <font-awesome-icon v-if="icon" :icon="icon" />
-    </div>
-  </router-link>
-  <button v-else v-bind="dirAttribute">
-    <div
-      class="flex h-full items-center gap-3 px-4 py-2.5 active:scale-95"
-      :class="[
-        `btn-${type}`,
-        icon ? 'justify-between' : 'justify-center',
-        inputPlacement ? 'rounded-s-full' : 'rounded-full',
-      ]"
-    >
-      <slot />
-      <font-awesome-icon v-if="icon" :icon="icon" />
-    </div>
-  </button>
+  </component>
 </template>
 
 <script setup>
 import { defineProps } from "vue";
+
+// TODO: Add props types and required info
 const props = defineProps(["mode", "type", "icon", "inputPlacement"]);
+
+const handleMode = (() => {
+  if (props.mode === "router-link") {
+    return "router-link";
+  } else if (props.mode === "link") {
+    return "a";
+  } else {
+    return "button";
+  }
+})();
 
 const dirAttribute = (() => {
   console.log(props.inputPlacement);
