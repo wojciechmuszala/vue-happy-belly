@@ -2,7 +2,6 @@
   <div
     v-if="type === 'text' || type === 'password' || type === 'number'"
     class="group relative w-full"
-    v-bind="dirAttribute"
   >
     <input
       @input="handleInput($event)"
@@ -17,8 +16,8 @@
           'border-red-500 bg-red-50': validateFunction && !checkIsInputValid(),
           'rounded-full': !noRounded,
           'rounded-none border-r-0': noRounded === 'both',
-          'rounded-s-full border-r-0': noRounded === 'right',
-          'rounded-s-full border-l-0': noRounded === 'left',
+          'rounded-l-full border-r-0': noRounded === 'right',
+          'rounded-r-full border-l-0': noRounded === 'left',
         },
       ]"
     />
@@ -117,17 +116,6 @@ const props = defineProps([
   "defaultOption",
   "noRounded",
 ]);
-
-const dirAttribute = (() => {
-  console.log(props.noRounded);
-  if (props.noRounded === "right") {
-    return { dir: "ltr" };
-  } else if (props.noRounded === "left") {
-    return { dir: "rtl" };
-  } else {
-    return null;
-  }
-})();
 
 const emit = defineEmits(["update:modelValue"]);
 

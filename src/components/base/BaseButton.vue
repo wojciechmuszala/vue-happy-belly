@@ -1,5 +1,5 @@
 <template>
-  <component :is="handleMode" v-bind="dirAttribute" class="cursor-pointer">
+  <component :is="handleMode" class="cursor-pointer">
     <div
       class="flex h-full items-center gap-3 px-4 py-2.5 active:scale-95"
       :class="[
@@ -8,7 +8,8 @@
         {
           'rounded-full': !noRounded,
           'rounded-none': noRounded === 'both',
-          'rounded-s-full': noRounded === 'right' || noRounded === 'left',
+          'rounded-l-full': noRounded === 'right',
+          'rounded-r-full': noRounded === 'left',
         },
       ]"
     >
@@ -31,16 +32,6 @@ const handleMode = (() => {
     return "a";
   } else {
     return "button";
-  }
-})();
-
-const dirAttribute = (() => {
-  if (props.noRounded === "right") {
-    return { dir: "ltr" };
-  } else if (props.noRounded === "left") {
-    return { dir: "rtl" };
-  } else {
-    return null;
   }
 })();
 </script>
