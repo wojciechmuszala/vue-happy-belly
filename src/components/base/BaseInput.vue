@@ -6,18 +6,21 @@
     <input
       @input="handleInput($event)"
       @blur="handleBlur($event)"
+      @keydown="checkIsNumber"
       :id="id"
       :type="type"
       :value="modelValue"
-      class="bg-white peer w-full border border-dark-blue px-5 py-2.5 text-dark-blue focus:outline-none"
+      v-bind="typeAttributes"
+      class="bg-white peer w-full rounded-full border border-dark-blue px-5 py-2.5 text-dark-blue focus:outline-none"
       :class="[
         inputClass,
         {
           'border-red-500 bg-red-50': validateFunction && !checkIsInputValid(),
-          'rounded-full': !noRounded,
-          'rounded-none border-r-0': noRounded === 'both',
-          'rounded-l-full border-r-0': noRounded === 'right',
-          'rounded-r-full border-l-0': noRounded === 'left',
+          'sm:rounded-none sm:border-r-0': noRounded === 'both',
+          'sm:rounded-l-full sm:rounded-r-none sm:border-r-0':
+            noRounded === 'right',
+          'sm: rounded-l-none sm:rounded-r-full sm:border-l-0':
+            noRounded === 'left',
         },
       ]"
     />
@@ -97,6 +100,9 @@
 
 <script setup>
 import { ref, defineProps, defineEmits } from "vue";
+import { useInputValidation } from "@/composables/useInputValidation";
+
+const { allowOnlyNumber } = useInputValidation();
 
 // TODO: Add props types and required info
 // TODO: Handle type number (convert to type number)
@@ -117,6 +123,17 @@ const props = defineProps([
   "noRounded",
 ]);
 
+const checkIsNumber = (event) =>
+  props.type === "number" ? allowOnlyNumber(event) : null;
+
+const typeAttributes = (() => {
+  if (props.type === "number") {
+    return { step: 0.1, min: 0 };
+  } else {
+    return null;
+  }
+})();
+
 const emit = defineEmits(["update:modelValue"]);
 
 const firstCharacterTyped = ref(false);
@@ -129,6 +146,10 @@ const emitInputValue = (event) => {
   /* if (modelModifiers[...]) {
     value = value.replace(...);
   } */
+
+  if (props.type === "numner") {
+    value = value.toFixed(2);
+  }
 
   emit("update:modelValue", value);
 };

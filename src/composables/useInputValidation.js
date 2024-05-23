@@ -11,6 +11,17 @@ export const useInputValidation = () => {
     /[^\w\s]/.test(value) && value.length > 0;
   const validatePasswordMatch = (value1, value2) =>
     value1 === value2 && value2.length > 0;
+  const validateIsNumber = (value) => typeof value === "number";
+
+  const allowOnlyNumber = (event) => {
+    if (
+      event.key.length === 1 &&
+      isNaN(Number(event.key)) &&
+      event.key !== "."
+    ) {
+      event.preventDefault();
+    }
+  };
 
   return {
     validateEmpty,
@@ -21,5 +32,7 @@ export const useInputValidation = () => {
     validateNumber,
     validateSpecialCharacter,
     validatePasswordMatch,
+    validateIsNumber,
+    allowOnlyNumber,
   };
 };

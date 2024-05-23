@@ -21,25 +21,31 @@
         >
           Ingredients
         </h2>
-        <form @submit.prevent="addIngredient" class="flex w-80">
+        <form
+          @submit.prevent="addIngredient"
+          class="flex max-w-2xl flex-col gap-3 sm:flex-row sm:gap-0"
+        >
           <base-input
             onInput
             type="text"
             label="Add ingredient"
             no-rounded="right"
             v-model="ingredientName"
+            class="grow-1 basis-full"
           />
           <base-input
             onInput
             type="number"
-            label="Quantity"
+            label="Qantity"
             no-rounded="both"
             v-model="ingredientQuantity"
+            class="basis-1/3"
           />
           <base-button
             type="primary"
             :icon="['fas', 'plus']"
             no-rounded="left"
+            class="shrink-1 ml-auto w-1/4 sm:w-auto [&_div]:justify-center"
           />
         </form>
         <ul v-if="ingredientList.length > 0">
@@ -68,6 +74,7 @@ const addIngredient = () => {
     console.log("Already on list!");
   }
 };
+
 </script>
 
 <style lang="scss" scoped></style>

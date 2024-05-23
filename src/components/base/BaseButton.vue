@@ -1,15 +1,14 @@
 <template>
   <component :is="handleMode" class="cursor-pointer">
     <div
-      class="flex h-full items-center gap-3 px-4 py-2.5 active:scale-95"
+      class="flex h-full items-center gap-3 rounded-full px-4 py-2.5 active:scale-95"
       :class="[
         `btn-${type}`,
         icon ? 'justify-between' : 'justify-center',
         {
-          'rounded-full': !noRounded,
-          'rounded-none': noRounded === 'both',
-          'rounded-l-full': noRounded === 'right',
-          'rounded-r-full': noRounded === 'left',
+          'sm:rounded-none': noRounded === 'both',
+          'sm:rounded-l-full sm:rounded-r-none': noRounded === 'right',
+          'sm:rounded-l-none sm:rounded-r-full': noRounded === 'left',
         },
       ]"
     >
