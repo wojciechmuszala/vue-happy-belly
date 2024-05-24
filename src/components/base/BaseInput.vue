@@ -1,11 +1,14 @@
+<!-- TODO - Split to independent components (by v-if) -->
+<!-- TODO - Add props types and required info -->
+
 <template>
   <div
     v-if="type === 'text' || type === 'password' || type === 'number'"
     class="group relative w-full"
   >
     <input
-      @input="handleInput($event)"
-      @blur="handleBlur($event)"
+      @input="handleInput"
+      @blur="handleBlur"
       @keydown="checkIsNumber"
       :id="id"
       :type="type"
@@ -128,8 +131,6 @@ import { useInputValidation } from "@/composables/useInputValidation";
 
 const { allowOnlyNumber } = useInputValidation();
 
-// TODO: Add props types and required info
-// TODO: Handle type number (convert to type number)
 const props = defineProps([
   "id",
   "label",
@@ -170,12 +171,11 @@ const emitInputValue = (inputValue) => {
   /* if (modelModifiers[...]) {
     value = value.replace(...);
   } */
-  
+
   let value;
   if (props.type === "select") {
     value = inputValue;
   } else {
-    const event = inputValue;
     value = event.target.value;
   }
 
