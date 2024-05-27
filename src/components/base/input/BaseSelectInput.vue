@@ -1,3 +1,7 @@
+<!-- TODO - Fix options list margin/padding when rounded-full -->
+<!-- TODO - Check all props -->
+<!-- TODO - Think about adding a useInput composable -->
+
 <template>
   <div class="relative min-w-60">
     <details
@@ -48,7 +52,7 @@
         />
       </summary>
       <ul
-        class="bg-white absolute left-0 top-full w-full border border-t-0 border-dark-blue [&_li:last-child]:border-none"
+        class="bg-white absolute left-0 top-full z-10 w-full border border-t-0 border-dark-blue [&_li:last-child]:border-none"
       >
         <!-- <li
           class="hover:bg-gray-100 border-b border-t-0 border-dark-blue"

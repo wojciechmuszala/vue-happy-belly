@@ -1,5 +1,7 @@
+<!-- TODO - Split to separate components  -->
 <!-- TODO - Add validation fct to ingredients form  -->
-<!-- TODO - Add 'method of preparing the recipe' section -->
+<!-- TODO - Add delete btn to ingredients  -->
+<!-- TODO - Add drag and drop option to change the order in the list of ingredients  -->
 <!-- TODO - Refactor and handle main form -->
 
 <template>
@@ -71,6 +73,14 @@
           </li>
         </ul>
       </div>
+      <div>
+        <h2
+          class="mb-6 border-b-2 border-b-dark-blue pr-2 text-2xl underline decoration-2"
+        >
+          Method of preparing
+        </h2>
+        <base-textarea onInput v-model="methodOfPreparing" />
+      </div>
     </base-card>
   </div>
 </template>
@@ -99,6 +109,8 @@ const addIngredient = () => {
     console.log("Already on list!");
   }
 };
+
+const methodOfPreparing = ref("");
 </script>
 
 <style lang="scss" scoped></style>

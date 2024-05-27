@@ -3,23 +3,22 @@
 
 <template>
   <div class="group relative w-full">
-    <input
+    <textarea
       @input="handleInput"
       @blur="handleBlur"
-      @keydown="checkIsNumber"
       :id="id"
       :type="type"
       :value="modelValue"
       v-bind="typeAttributes"
-      class="bg-white peer w-full rounded-full border border-dark-blue px-5 py-2.5 text-dark-blue focus:outline-none"
+      class="bg-white peer h-52 w-full rounded-3xl border border-dark-blue px-5 py-2.5 text-dark-blue focus:outline-none"
       :class="[
         inputClass,
         {
           'border-red-500 bg-red-50': validateFunction && !checkIsInputValid(),
           'sm:rounded-none sm:border-r-0': noRounded === 'both',
-          'sm:rounded-l-full sm:rounded-r-none sm:border-r-0':
+          'sm:rounded-l-3xl sm:rounded-r-none sm:border-r-0':
             noRounded === 'right',
-          'sm: rounded-l-none sm:rounded-r-full sm:border-l-0':
+          'sm: rounded-l-none sm:rounded-r-3xl sm:border-l-0':
             noRounded === 'left',
         },
       ]"
@@ -45,9 +44,6 @@
 
 <script setup>
 import { ref, defineProps, defineEmits } from "vue";
-import { useInputValidation } from "@/composables/useInputValidation";
-
-const { allowOnlyNumber } = useInputValidation();
 
 const props = defineProps([
   "id",
@@ -63,9 +59,6 @@ const props = defineProps([
   "onBlur",
   "noRounded",
 ]);
-
-const checkIsNumber = (event) =>
-  props.type === "number" ? allowOnlyNumber(event) : null;
 
 const typeAttributes = (() => {
   if (props.type === "number") {

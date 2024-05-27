@@ -1,11 +1,12 @@
 <template>
-  <base-input
+  <base-text-input
+    onInput
     :icon="['fas', 'magnifying-glass']"
     id="search"
     type="text"
     label="Search"
     v-model="value"
-  ></base-input>
+  ></base-text-input>
 </template>
 
 <script setup>
