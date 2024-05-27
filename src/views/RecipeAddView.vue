@@ -12,7 +12,7 @@
         >
           Recipe name
         </h2>
-        <base-input
+        <base-text-input
           onInput
           type="text"
           label="Recipe name"
@@ -29,7 +29,7 @@
           @submit.prevent="addIngredient"
           class="flex max-w-2xl flex-col gap-3 sm:flex-row sm:gap-0"
         >
-          <base-input
+          <base-text-input
             ref="startIngeredientInput"
             onInput
             type="text"
@@ -38,7 +38,7 @@
             v-model="ingredient.name"
             class="sm:basis-1/2"
           />
-          <base-input
+          <base-text-input
             onInput
             type="number"
             label="Qantity"
@@ -46,9 +46,7 @@
             v-model="ingredient.quantity"
             class="sm:basis-1/5"
           />
-          <base-input
-            onChange
-            type="select"
+          <base-select-input
             id="unit"
             label="Unit"
             :options="['g', 'ml', 'tsp', 'tbsp', 'cup']"

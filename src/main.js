@@ -9,6 +9,9 @@ import BaseViewUnderConstruction from "./components/base/BaseViewUnderConstructi
 import BaseButton from "./components/base/BaseButton.vue";
 import BaseCard from "./components/base/BaseCard.vue";
 import BaseInput from "./components/base/BaseInput.vue";
+import BaseTextInput from "./components/base/input/BaseTextInput.vue";
+import BaseSelectInput from "./components/base/input/BaseSelectInput.vue";
+import BaseFileInput from "./components/base/input/BaseFileInput.vue";
 import BaseAnnouncement from "./components/base/BaseAnnouncement.vue";
 
 import "@/assets/styles/index.css";
@@ -24,6 +27,9 @@ app.component("font-awesome-icon", FontAwesomeIcon);
 app.component("base-view-under-construction", BaseViewUnderConstruction);
 app.component("base-button", BaseButton);
 app.component("base-card", BaseCard);
+app.component("base-text-input", BaseTextInput);
+app.component("base-select-input", BaseSelectInput);
+app.component("base-file-input", BaseFileInput);
 app.component("base-input", BaseInput);
 app.component("base-announcement", BaseAnnouncement);
 

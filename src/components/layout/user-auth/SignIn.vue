@@ -2,20 +2,20 @@
   <div>
     <h2 class="mb-8 text-center text-3xl">Sign in</h2>
     <form class="flex flex-col gap-5" @submit.prevent="handleSignInWithEmail">
-      <base-input
+      <base-text-input
         onInput
         id="email"
         type="text"
         label="E-mail"
         v-model.trim="email"
-      ></base-input>
-      <base-input
+      ></base-text-input>
+      <base-text-input
         onInput
         id="password"
         type="password"
         label="Password"
         v-model="password"
-      ></base-input>
+      ></base-text-input>
       <auth-announcements
         :errorMessage="errorMessage"
         v-show="errorMessage"
