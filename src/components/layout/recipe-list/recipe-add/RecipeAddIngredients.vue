@@ -63,14 +63,22 @@ const ingredient = reactive({
 const ingredientList = ref([]);
 const startIngeredientInput = ref(null);
 const addIngredient = () => {
+  if (!ingredient.name || !ingredient.quantity || !ingredient.unit) {
+    console.log("Please fill in all fields!");
+    return;
+  }
+
   const newIngredient = shallowRef({ ...ingredient });
   if (!ingredientList.value.includes(ingredient.name)) {
     ingredientList.value.push(newIngredient.value);
+
     for (let key in ingredient) {
       ingredient[key] = null;
     }
+
+    handleEmitIngredient(newIngredient.value);
+
     startIngeredientInput.value.$el.querySelector("input").focus();
-    handleEmitIngredient(newIngredient);
   } else {
     // TODO: Add validation fct and info
     console.log("Already on list!");
