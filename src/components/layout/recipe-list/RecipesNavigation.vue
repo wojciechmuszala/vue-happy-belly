@@ -16,8 +16,8 @@
 </template>
 
 <script setup>
-import RecipeSearch from "./navigation/RecipeSearch.vue";
-import RecipeTagFilter from "./navigation/RecipeTagFilter.vue";
+import RecipeSearch from "./recipe-navigation/RecipeSearch.vue";
+import RecipeTagFilter from "./recipe-navigation/RecipeTagFilter.vue";
 </script>
 
 <style scoped></style>
